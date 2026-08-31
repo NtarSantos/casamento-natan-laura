@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natan &amp; Laura — 22 de março de 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F7F3EC; color: #1C1A17; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #B5654A; text-decoration: none; }
+  a:hover { color: #1C1A17; }
+  ::selection { background: #B5654A; color: #F7F3EC; }
+  input, textarea, button { font-family: inherit; }
+  @keyframes lauraDraw { to { stroke-dashoffset: 0; } }
+  @keyframes lauraUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes lauraPulse { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<div style="position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0.045; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E&quot;); mix-blend-mode: multiply;"></div>
+
+<nav aria-label="Seções" style="position: fixed; right: clamp(10px, 2.5vw, 34px); top: 50%; transform: translateY(-50%); z-index: 80; display: flex; flex-direction: column; gap: 14px; transition: opacity 500ms cubic-bezier(.22,.61,.36,1); opacity: {{ navOpacity }}; pointer-events: {{ navPointer }};">
+  <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+    <button type="button" onClick="{{ item.go }}" aria-label="{{ item.aria }}" style="all: unset; cursor: pointer; display: flex; align-items: center; justify-content: flex-end; gap: 8px; font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .18em; color: {{ item.color }};">
+      <span style="display: none;" data-navlabel="1">{{ item.label }}</span>
+      <span>{{ item.n }}</span>
+      <span style="display: block; height: 1px; background: currentColor; transition: width 400ms cubic-bezier(.22,.61,.36,1); width: {{ item.w }};"></span>
+    </button>
+  </sc-for>
+</nav>
+
+<main style="position: relative; z-index: 1; font-family: 'Space Grotesk', system-ui, sans-serif;">
+
+  <!-- 01 ABERTURA -->
+  <section id="abertura" data-screen-label="01 Abertura" style="min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(22px, 5vw, 56px) clamp(20px, 5vw, 64px) clamp(20px, 3vw, 40px);">
+    <header style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+      <span style="font: 500 0.6rem/1.4 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.55);">Vamos<br>casar</span>
+      <span style="font: 500 0.6rem/1.4 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.55); text-align: right;">Haras Residence<br>São Cristóvão · Sergipe</span>
+    </header>
+
+    <div style="display: flex; flex-direction: column; align-items: stretch; margin: clamp(28px, 6vh, 70px) 0;">
+      <h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 700; line-height: .82; letter-spacing: -0.02em; font-size: clamp(4.2rem, 23vw, 16rem);">
+        <span data-reveal="1" style="display: block;">Natan</span>
+        <span style="display: flex; align-items: baseline; gap: clamp(10px, 2vw, 28px); justify-content: flex-end; margin-right: clamp(-14px, -1vw, 0px);">
+          <em data-reveal="1" data-reveal-delay="120" style="font-style: italic; font-weight: 400; color: #B5654A; font-size: 1.15em; line-height: .7;">&amp;</em>
+          <span data-reveal="1" data-reveal-delay="200" style="display: block;">Laura</span>
+        </span>
+      </h1>
+      <p data-reveal="1" data-reveal-delay="320" style="margin: clamp(20px, 3vh, 34px) 0 0; max-width: 34ch; font: 300 clamp(0.95rem, 1.05vw, 1.05rem)/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72);">Um retiro que ela quase não foi, um louvor cantado a dois sem se conhecerem, e um pedido de namoro no Dia Mundial dos Jovens Adventistas. Agora é a vez do sim. Queremos você lá.</p>
+    </div>
+
+    <footer data-reveal="1" data-reveal-delay="400" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .3em; color: rgba(28,26,23,.5);">22.03.2027</span>
+        <span style="font: 300 0.8rem/1 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">segunda-feira, 16h</span>
+      </div>
+      <sc-if value="{{ showCountdown }}" hint-placeholder-val="{{ true }}">
+        <div aria-label="Contagem regressiva" style="display: flex; align-items: flex-end; gap: clamp(16px, 3vw, 38px);">
+          <span style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1; color: #B5654A;">{{ cd.dias }}</span>
+            <span style="font: 500 0.5rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; color: rgba(28,26,23,.5);">DIAS</span>
+          </span>
+          <span style="width: 1px; height: 30px; background: rgba(28,26,23,.18);"></span>
+          <span style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1; color: #B5654A;">{{ cd.horas }}</span>
+            <span style="font: 500 0.5rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; color: rgba(28,26,23,.5);">HORAS</span>
+          </span>
+          <span style="width: 1px; height: 30px; background: rgba(28,26,23,.18);"></span>
+          <span style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1; color: #B5654A;">{{ cd.min }}</span>
+            <span style="font: 500 0.5rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; color: rgba(28,26,23,.5);">MINUTOS</span>
+          </span>
+        </div>
+      </sc-if>
+      <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; color: rgba(28,26,23,.45); animation: lauraPulse 2.8s ease-in-out infinite;">ROLE ↓</span>
+    </footer>
+  </section>
+
+  <!-- 02 NOSSA HISTÓRIA -->
+  <section id="historia" data-screen-label="02 Nossa história" style="padding: clamp(70px, 12vh, 150px) 0 clamp(60px, 10vh, 120px);">
+    <div style="padding: 0 clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
+      <h2 data-reveal="1" style="margin: 0; display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em;">
+        <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">01</span>
+        <span>Nossa história</span>
+      </h2>
+      <span data-reveal="1" data-reveal-delay="120" style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(28,26,23,.45);">Fev 2024 — nov 2025</span>
+    </div>
+
+    <div style="position: relative; padding: clamp(30px, 5vh, 56px) clamp(20px, 5vw, 64px) 0;">
+      <div style="position: absolute; left: 20px; top: 6px; bottom: 6px; width: 1px; background: rgba(28,26,23,.18);"></div>
+      <div style="display: flex; flex-direction: column; gap: clamp(56px, 8vh, 88px); max-width: 620px;">
+      <article data-reveal="1" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
+        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 300 400" width="52%" style="overflow: visible;" aria-hidden="true">
+            <line x1="30" y1="340" x2="270" y2="340" stroke="#1C1A17" stroke-opacity=".15" stroke-width="1"></line>
+            <path d="M40 340 L70 288 L100 340 Z" fill="none" stroke="#B5654A" stroke-width="1.2" stroke-linejoin="round"></path>
+            <path d="M70 288 L70 268" stroke="#B5654A" stroke-width="1.2"></path>
+            <rect x="136" y="140" width="28" height="52" rx="14" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></rect>
+            <line x1="142" y1="155" x2="158" y2="155" stroke="#1C1A17" stroke-opacity=".35" stroke-width="1"></line>
+            <line x1="142" y1="165" x2="158" y2="165" stroke="#1C1A17" stroke-opacity=".35" stroke-width="1"></line>
+            <line x1="142" y1="175" x2="158" y2="175" stroke="#1C1A17" stroke-opacity=".35" stroke-width="1"></line>
+            <path d="M124 176 a26 26 0 0 0 52 0" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></path>
+            <line x1="150" y1="202" x2="150" y2="222" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
+            <line x1="134" y1="222" x2="166" y2="222" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></line>
+            <path d="M198 150 q2 -18 20 -20" fill="none" stroke="#B5654A" stroke-width="1.2" stroke-linecap="round"></path>
+            <circle cx="196" cy="152" r="6" fill="#B5654A"></circle>
+            <path d="M212 118 q2 -14 16 -16" fill="none" stroke="#B5654A" stroke-width="1.2" stroke-linecap="round"></path>
+            <circle cx="210" cy="120" r="5" fill="#B5654A"></circle>
+          </svg>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
+          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">Fev 2024</span>
+        </div>
+        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">Um retiro que ele quase não foi</h3>
+        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">Ela veio da Igreja de Santos Dumont 1 para o retiro na Igreja do Japãozinho, onde Natan congrega. Cantaram juntos em todos os cultos sem nem se conhecer — até ele, responsável pelos louvores, convidá-la para cantar ao seu lado.</p>
+      </article>
+
+      <article data-reveal="1" data-reveal-delay="80" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
+        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 400 300" width="60%" style="overflow: visible;" aria-hidden="true">
+            <path d="M60 220 L60 110 Q130 96 200 110 L200 224 Q130 208 60 220 Z" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linejoin="round"></path>
+            <path d="M340 220 L340 110 Q270 96 200 110 L200 224 Q270 208 340 220 Z" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linejoin="round"></path>
+            <line x1="76" y1="140" x2="180" y2="132" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
+            <line x1="76" y1="158" x2="180" y2="150" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
+            <line x1="76" y1="176" x2="180" y2="168" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
+            <line x1="220" y1="132" x2="324" y2="140" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
+            <line x1="220" y1="150" x2="324" y2="158" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
+            <line x1="220" y1="168" x2="324" y2="176" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
+            <rect x="200" y="150" width="18" height="72" rx="4" fill="none" stroke="#B5654A" stroke-width="1.2" transform="translate(0 -40)"></rect>
+            <path d="M200 88 q9 -18 18 0 q0 10 -9 14 q-9 -4 -9 -14 Z" fill="#B5654A" stroke="none" transform="translate(0 -1)"></path>
+          </svg>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
+          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">Fev/Mar 2024</span>
+        </div>
+        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">Dez dias de oração</h3>
+        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">Depois do retiro, começaram a se encontrar para ler juntos os 10 Dias de Oração. Foi nesse mês que tudo passou a fazer sentido.</p>
+      </article>
+
+      <article data-reveal="1" data-reveal-delay="160" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
+        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 320 320" width="46%" style="overflow: visible;" aria-hidden="true">
+            <circle cx="110" cy="168" r="36" fill="none" stroke="#B5654A" stroke-width="1.3"></circle>
+            <line x1="20" y1="168" x2="300" y2="168" stroke="#1C1A17" stroke-opacity=".18" stroke-width="1"></line>
+            <path d="M20 190 q20 -14 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1.1"></path>
+            <path d="M20 214 q20 -14 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#1C1A17" stroke-opacity=".22" stroke-width="1.1"></path>
+            <path d="M244 168 Q234 108 250 66" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></path>
+            <path d="M250 66 Q222 60 208 78" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
+            <path d="M250 66 Q236 40 250 20" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
+            <path d="M250 66 Q262 36 288 30" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
+            <path d="M250 66 Q270 76 292 68" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
+          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">21 mar 2024</span>
+        </div>
+        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">O pedido de namoro</h3>
+        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">No Dia Mundial dos Jovens Adventistas, na Barra dos Coqueiros, Natan pediu Laura em namoro.</p>
+      </article>
+
+      <article data-reveal="1" data-reveal-delay="240" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
+        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 320 400" width="42%" style="overflow: visible;" aria-hidden="true">
+            <path d="M100 190 a70 70 0 1 1 120 0 q-8 20 -60 20 t-60 -20 Z" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linejoin="round"></path>
+            <line x1="160" y1="205" x2="160" y2="270" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
+            <line x1="70" y1="300" x2="250" y2="300" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></line>
+            <line x1="70" y1="300" x2="70" y2="320" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
+            <line x1="250" y1="300" x2="250" y2="320" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
+            <line x1="90" y1="284" x2="90" y2="300" stroke="#1C1A17" stroke-opacity=".4" stroke-width="1"></line>
+            <line x1="230" y1="284" x2="230" y2="300" stroke="#1C1A17" stroke-opacity=".4" stroke-width="1"></line>
+            <circle cx="182" cy="98" r="20" fill="none" stroke="#B5654A" stroke-width="1.4"></circle>
+            <circle cx="206" cy="86" r="20" fill="none" stroke="#B5654A" stroke-width="1.4"></circle>
+          </svg>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
+          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">20 nov 2025</span>
+        </div>
+        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">O noivado</h3>
+        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">No Parque da Sementeira, cercados de família e amigos, veio o pedido de noivado.</p>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 O GRANDE DIA -->
+  <section id="dia" data-screen-label="03 O grande dia" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
+    <h2 data-reveal="1" style="margin: 0 0 clamp(34px, 6vh, 64px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">02</span>
+      <span>O grande dia</span>
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 3vw, 40px);">
+      <article data-reveal="1" style="border: 1px solid rgba(28,26,23,.18); padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 18px; background: rgba(255,255,255,.35);">
+        <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: #B5654A;">Cerimônia</span>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1;">16h00</p>
+        <p style="margin: 0; font: 300 0.95rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">Haras Residence<br>São Cristóvão, SE — endereço a confirmar</p>
+        <p style="margin: 0; font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(28,26,23,.55);">Chegue uns 20 minutos antes. A cerimônia começa no horário, prometemos.</p>
+        <a href="https://maps.google.com" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #B5654A; padding-bottom: 5px; transition: opacity 300ms;" style-hover="opacity: .55;">Abrir no mapa ↗</a>
+      </article>
+
+      <article data-reveal="1" data-reveal-delay="120" style="border: 1px solid rgba(28,26,23,.18); padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 18px; background: rgba(255,255,255,.35);">
+        <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: #B5654A;">Recepção</span>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1;">18h30</p>
+        <p style="margin: 0; font: 300 0.95rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">Haras Residence<br>mesmo espaço da cerimônia</p>
+        <p style="margin: 0; font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(28,26,23,.55);">Jantar servido às 20h. A festa vai até as 3h — leve sapato de dançar.</p>
+        <a href="https://maps.google.com" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #B5654A; padding-bottom: 5px; transition: opacity 300ms;" style-hover="opacity: .55;">Abrir no mapa ↗</a>
+      </article>
+    </div>
+
+    <div style="margin-top: clamp(40px, 7vh, 80px); display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(24px, 3vw, 48px); border-top: 1px solid rgba(28,26,23,.18); padding-top: clamp(28px, 4vh, 48px);">
+      <div data-reveal="1" style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.5);">Dress code</span>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">Esporte fino, tons de terra</p>
+        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">Nada de preto fechado nem branco. Pense em areia, oliva, argila, café.</p>
+        <div style="display: flex; gap: 8px; margin-top: 4px;">
+          <span title="Areia" style="width: 34px; height: 34px; border-radius: 50%; background: #E3D9C6; border: 1px solid rgba(28,26,23,.12);"></span>
+          <span title="Oliva" style="width: 34px; height: 34px; border-radius: 50%; background: #6B7A5A;"></span>
+          <span title="Argila" style="width: 34px; height: 34px; border-radius: 50%; background: #C08A6E;"></span>
+          <span title="Café" style="width: 34px; height: 34px; border-radius: 50%; background: #5A4636;"></span>
+          <span title="Off-white" style="width: 34px; height: 34px; border-radius: 50%; background: #EFE9DC; border: 1px solid rgba(28,26,23,.12);"></span>
+        </div>
+      </div>
+      <div data-reveal="1" data-reveal-delay="100" style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.5);">Estacionamento</span>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">Tem vaga para todo mundo</p>
+        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">Estacionamento gratuito com manobrista na entrada da fazenda. Se preferir vir de aplicativo, o sinal é bom no local.</p>
+      </div>
+      <div data-reveal="1" data-reveal-delay="200" style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.5);">Onde ficar</span>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">Para quem vem de fora</p>
+        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">Em breve indicamos opções de hospedagem próximas ao Haras Residence, em São Cristóvão.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 RSVP -->
+  <section id="rsvp" data-screen-label="04 Confirmação" style="background: #1C1A17; color: #F7F3EC; padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(70px, 12vh, 150px);">
+    <h2 data-reveal="1" style="margin: 0 0 clamp(30px, 5vh, 56px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(247,243,236,.2); padding-bottom: 18px;">
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #D98F6C;">03</span>
+      <span>Confirme sua presença</span>
+    </h2>
+
+    <div style="max-width: 720px; margin: 0 auto; border: 1px solid rgba(247,243,236,.2); background: rgba(247,243,236,.03);">
+      <div style="height: 2px; background: rgba(247,243,236,.14);">
+        <div style="height: 2px; background: #D98F6C; transition: width 500ms cubic-bezier(.22,.61,.36,1); width: {{ progressW }};"></div>
+      </div>
+
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 60px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;">
+          <svg width="66" height="66" viewBox="0 0 66 66" fill="none" aria-hidden="true">
+            <circle cx="33" cy="33" r="31" stroke="#D98F6C" stroke-width="1" stroke-dasharray="195" stroke-dashoffset="195" style="animation: lauraDraw 900ms cubic-bezier(.22,.61,.36,1) forwards;"></circle>
+            <path d="M21 34.5 L29.5 43 L45 25" stroke="#D98F6C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="45" stroke-dashoffset="45" style="animation: lauraDraw 600ms cubic-bezier(.22,.61,.36,1) 700ms forwards;"></path>
+          </svg>
+          <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.05; animation: lauraUp 600ms cubic-bezier(.22,.61,.36,1) 500ms both;">{{ successTitle }}</p>
+          <p style="margin: 0; max-width: 38ch; font: 300 0.95rem/1.75 'Space Grotesk', sans-serif; color: rgba(247,243,236,.72); animation: lauraUp 600ms cubic-bezier(.22,.61,.36,1) 700ms both;">{{ successText }}</p>
+          <button type="button" onClick="{{ resetForm }}" style="all: unset; cursor: pointer; margin-top: 8px; font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,243,236,.55); border-bottom: 1px solid rgba(247,243,236,.3); padding-bottom: 5px;" style-hover="color: #F7F3EC;">Confirmar outra pessoa</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ onNext }}" style="padding: clamp(28px, 5vw, 56px) clamp(24px, 5vw, 60px) clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: clamp(22px, 4vw, 34px); min-height: 340px;">
+          <span style="font: 500 0.56rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(247,243,236,.45);">{{ stepLabel }}</span>
+
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 26px;">
+              <label for="rsvp-nome" style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.1;">Para começar, qual é o seu nome?</label>
+              <input id="rsvp-nome" type="text" value="{{ nome }}" onChange="{{ onNome }}" autoComplete="name" placeholder="Nome e sobrenome" style="all: unset; width: 100%; padding: 10px 2px; border-bottom: 1px solid rgba(247,243,236,.28); font: 300 1.15rem/1.4 'Space Grotesk', sans-serif; color: #F7F3EC; transition: border-color 300ms;" style-focus="border-bottom-color: #D98F6C;"></input>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 26px;">
+              <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.1;">{{ q2 }}</p>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button type="button" onClick="{{ setSim }}" style="all: unset; cursor: pointer; border: 1px solid {{ simBorder }}; padding: 18px 22px; font: 400 1rem/1.3 'Space Grotesk', sans-serif; color: #F7F3EC; transition: border-color 350ms, background 350ms; background: {{ simBg }};" style-hover="border-color: #D98F6C;">Sim, não vejo a hora</button>
+                <button type="button" onClick="{{ setNao }}" style="all: unset; cursor: pointer; border: 1px solid {{ naoBorder }}; padding: 18px 22px; font: 400 1rem/1.3 'Space Grotesk', sans-serif; color: #F7F3EC; transition: border-color 350ms, background 350ms; background: {{ naoBg }};" style-hover="border-color: #D98F6C;">Infelizmente não poderei</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 26px;">
+              <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.1;">Você vem acompanhado?</p>
+              <div style="display: flex; align-items: center; gap: 22px;">
+                <button type="button" onClick="{{ minus }}" aria-label="Menos um acompanhante" style="all: unset; cursor: pointer; width: 46px; height: 46px; border: 1px solid rgba(247,243,236,.28); display: grid; place-items: center; font-size: 1.3rem; color: #F7F3EC; transition: border-color 300ms;" style-hover="border-color: #D98F6C;">−</button>
+                <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 2.6rem; line-height: 1; min-width: 44px; text-align: center; color: #D98F6C;">{{ acomp }}</span>
+                <button type="button" onClick="{{ plus }}" aria-label="Mais um acompanhante" style="all: unset; cursor: pointer; width: 46px; height: 46px; border: 1px solid rgba(247,243,236,.28); display: grid; place-items: center; font-size: 1.3rem; color: #F7F3EC; transition: border-color 300ms;" style-hover="border-color: #D98F6C;">+</button>
+                <span style="font: 300 0.85rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.55);">{{ acompLabel }}</span>
+              </div>
+              <sc-if value="{{ hasAcomp }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <label for="rsvp-nomes" style="font: 500 0.56rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(247,243,236,.45);">Nome de quem vem com você</label>
+                  <textarea id="rsvp-nomes" rows="2" value="{{ nomes }}" onChange="{{ onNomes }}" placeholder="Um nome por linha" style="all: unset; width: 100%; padding: 10px 2px; border-bottom: 1px solid rgba(247,243,236,.28); font: 300 1rem/1.6 'Space Grotesk', sans-serif; color: #F7F3EC; resize: none; transition: border-color 300ms;" style-focus="border-bottom-color: #D98F6C;"></textarea>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 26px;">
+              <label for="rsvp-restricao" style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.1;">Alguma restrição alimentar?</label>
+              <input id="rsvp-restricao" type="text" value="{{ restricao }}" onChange="{{ onRestricao }}" placeholder="Vegetariano, sem glúten, alergia a..." style="all: unset; width: 100%; padding: 10px 2px; border-bottom: 1px solid rgba(247,243,236,.28); font: 300 1.15rem/1.4 'Space Grotesk', sans-serif; color: #F7F3EC; transition: border-color 300ms;" style-focus="border-bottom-color: #D98F6C;"></input>
+              <span style="font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(247,243,236,.5);">Opcional. A cozinha agradece o aviso com antecedência.</span>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep5 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 26px;">
+              <label for="rsvp-recado" style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.1;">Quer deixar um recado para nós?</label>
+              <textarea id="rsvp-recado" rows="3" value="{{ recado }}" onChange="{{ onRecado }}" placeholder="Escreva o que quiser" style="all: unset; width: 100%; padding: 10px 2px; border-bottom: 1px solid rgba(247,243,236,.28); font: 300 1.05rem/1.7 'Space Grotesk', sans-serif; color: #F7F3EC; resize: none; transition: border-color 300ms;" style-focus="border-bottom-color: #D98F6C;"></textarea>
+            </div>
+          </sc-if>
+
+          <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid rgba(247,243,236,.14);">
+            <button type="button" onClick="{{ onBack }}" disabled="{{ backDisabled }}" style="all: unset; cursor: pointer; font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,243,236,.5); opacity: {{ backOpacity }};" style-hover="color: #F7F3EC;">← Voltar</button>
+            <button type="submit" style="all: unset; cursor: pointer; background: #D98F6C; color: #1C1A17; padding: 16px 30px; font: 500 0.62rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; transition: background 350ms, transform 350ms;" style-hover="background: #E5B196;" style-focus="outline: 2px solid #F7F3EC; outline-offset: 3px;">{{ nextLabel }}</button>
+          </div>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- 05 PRESENTES -->
+  <section id="presentes" data-screen-label="05 Presentes" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
+    <h2 data-reveal="1" style="margin: 0 0 clamp(24px, 4vh, 40px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">04</span>
+      <span>Cotas de sonho</span>
+    </h2>
+
+    <div data-reveal="1" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(30px, 5vh, 54px);">
+      <p style="margin: 0; max-width: 46ch; font: 300 clamp(0.95rem, 1.1vw, 1.05rem)/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">Já temos torradeira, jogo de panelas e toalhas demais. O que ainda não temos são as histórias do que vem depois. Se quiser fazer parte de alguma delas, escolha uma cota abaixo. E se preferir só aparecer e dançar, também está ótimo.</p>
+      <div style="min-width: 220px; display: flex; flex-direction: column; gap: 10px;">
+        <span style="font: 500 0.56rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: rgba(28,26,23,.5);">Já recebemos {{ cotasFeitas }} de 60 cotas</span>
+        <span style="display: block; height: 1px; background: rgba(28,26,23,.18);"><span style="display: block; height: 1px; background: #B5654A; transition: width 700ms cubic-bezier(.22,.61,.36,1); width: {{ cotasW }};"></span></span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 1px; background: rgba(28,26,23,.18); border: 1px solid rgba(28,26,23,.18);">
+      <sc-for list="{{ cotas }}" as="c" hint-placeholder-count="8">
+        <article data-reveal="1" style="background: #F7F3EC; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 14px; min-height: 260px; transition: background 400ms;" style-hover="background: #F1EBE0;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none" stroke="#B5654A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="{{ c.d1 }}"></path>
+              <path d="{{ c.d2 }}"></path>
+            </svg>
+            <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: rgba(28,26,23,.35);">{{ c.n }}</span>
+          </div>
+          <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.42rem; line-height: 1.15; text-wrap: pretty;">{{ c.titulo }}</h3>
+          <p style="margin: 0; font: 300 0.85rem/1.65 'Space Grotesk', sans-serif; color: rgba(28,26,23,.65); text-wrap: pretty;">{{ c.frase }}</p>
+          <div style="margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(28,26,23,.14);">
+            <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; color: #1C1A17;">{{ c.valor }}</span>
+            <button type="button" onClick="{{ c.open }}" style="all: unset; cursor: pointer; font: 500 0.56rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #B5654A; border-bottom: 1px solid #B5654A; padding-bottom: 4px; opacity: .45; transition: opacity 350ms;" style-hover="opacity: 1;" style-focus="opacity: 1; outline: 2px solid #B5654A; outline-offset: 4px;">Presentear</button>
+          </div>
+        </article>
+      </sc-for>
+
+      <article data-reveal="1" style="background: #1C1A17; color: #F7F3EC; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 14px; min-height: 260px;">
+        <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: #D98F6C;">Livre</span>
+        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.42rem; line-height: 1.15;">Contribuir com outro valor</h3>
+        <p style="margin: 0; font: 300 0.85rem/1.65 'Space Grotesk', sans-serif; color: rgba(247,243,236,.65);">Qualquer quantia cabe. De verdade.</p>
+        <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid rgba(247,243,236,.2);">
+          <span style="font-family: 'Bodoni Moda', serif; font-size: 1.4rem; color: #D98F6C;">R$</span>
+          <input type="text" inputMode="numeric" value="{{ outroValor }}" onChange="{{ onOutroValor }}" placeholder="0,00" aria-label="Outro valor em reais" style="all: unset; flex: 1; min-width: 0; padding: 6px 2px; border-bottom: 1px solid rgba(247,243,236,.28); font-family: 'Bodoni Moda', serif; font-size: 1.4rem; color: #F7F3EC; transition: border-color 300ms;" style-focus="border-bottom-color: #D98F6C;"></input>
+          <button type="button" onClick="{{ openOutro }}" style="all: unset; cursor: pointer; font: 500 0.56rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #D98F6C; border-bottom: 1px solid #D98F6C; padding-bottom: 4px;" style-hover="color: #F7F3EC; border-bottom-color: #F7F3EC;">Ir</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 06 RECADOS -->
+  <section id="recados" data-screen-label="06 Recados" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
+    <h2 data-reveal="1" style="margin: 0 0 clamp(30px, 5vh, 54px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">05</span>
+      <span>Mural de recados</span>
+    </h2>
+
+    <form onSubmit="{{ onMural }}" data-reveal="1" style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 18px; max-width: 780px; margin-bottom: clamp(34px, 6vh, 60px);">
+      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 8px;">
+        <label for="mural-nome" style="font: 500 0.54rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(28,26,23,.5);">Seu nome</label>
+        <input id="mural-nome" type="text" value="{{ muralNome }}" onChange="{{ onMuralNome }}" style="all: unset; width: 100%; padding: 8px 2px; border-bottom: 1px solid rgba(28,26,23,.25); font: 300 1rem/1.4 'Space Grotesk', sans-serif; transition: border-color 300ms;" style-focus="border-bottom-color: #B5654A;"></input>
+      </div>
+      <div style="flex: 2 1 300px; display: flex; flex-direction: column; gap: 8px;">
+        <label for="mural-msg" style="font: 500 0.54rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(28,26,23,.5);">Seu recado</label>
+        <input id="mural-msg" type="text" value="{{ muralMsg }}" onChange="{{ onMuralMsg }}" style="all: unset; width: 100%; padding: 8px 2px; border-bottom: 1px solid rgba(28,26,23,.25); font: 300 1rem/1.4 'Space Grotesk', sans-serif; transition: border-color 300ms;" style-focus="border-bottom-color: #B5654A;"></input>
+      </div>
+      <button type="submit" style="all: unset; cursor: pointer; background: #1C1A17; color: #F7F3EC; padding: 14px 26px; font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; transition: background 350ms;" style-hover="background: #B5654A;" style-focus="outline: 2px solid #B5654A; outline-offset: 3px;">Pregar no mural</button>
+    </form>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: clamp(18px, 2.5vw, 30px);">
+      <sc-for list="{{ recados }}" as="r" hint-placeholder-count="4">
+        <div data-reveal="1" style="background: {{ r.bg }}; padding: 24px 22px 20px; min-height: 168px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; box-shadow: 0 8px 22px rgba(28,26,23,.07); transition: transform 400ms cubic-bezier(.22,.61,.36,1); transform: {{ r.rot }};" style-hover="transform: rotate(0deg) translateY(-4px);">
+          <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 1.05rem; line-height: 1.5; text-wrap: pretty;">{{ r.msg }}</p>
+          <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(28,26,23,.55);">{{ r.nome }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 07 RODAPÉ -->
+  <footer style="background: #1C1A17; color: #F7F3EC; padding: clamp(60px, 10vh, 120px) clamp(20px, 5vw, 64px) clamp(30px, 5vh, 50px); display: flex; flex-direction: column; gap: clamp(34px, 6vh, 60px);">
+    <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(3rem, 15vw, 11rem); line-height: .85; letter-spacing: -0.02em;">Natan <em style="font-style: italic; font-weight: 400; color: #D98F6C;">&amp;</em> Laura</p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; border-top: 1px solid rgba(247,243,236,.2); padding-top: 26px;">
+      <p style="margin: 0; max-width: 40ch; font: 300 0.95rem/1.75 'Space Grotesk', sans-serif; color: rgba(247,243,236,.72);">Obrigado por chegar até aqui. Casar é bonito, mas o que a gente quer mesmo é olhar em volta naquele dia e ver vocês. Até março.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: rgba(247,243,236,.45);">Dúvidas</span>
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" style="font: 300 1.05rem/1.4 'Space Grotesk', sans-serif; color: #D98F6C;">WhatsApp (11) 99999-9999</a>
+        <span style="font: 300 0.85rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.45);">Falar com a Bia, nossa cerimonialista</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: rgba(247,243,236,.45);">Quando</span>
+        <span style="font: 300 1.05rem/1.4 'Space Grotesk', sans-serif;">22.03.2027 · 16h</span>
+        <span style="font: 300 0.85rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.45);">São Cristóvão, Sergipe</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="Contribuir via PIX" onClick="{{ closeModal }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(28,26,23,.62); display: flex; align-items: center; justify-content: center; padding: 20px; animation: lauraUp 300ms ease-out both;">
+    <div onClick="{{ stop }}" style="width: min(100%, 460px); background: #F7F3EC; padding: clamp(28px, 5vw, 44px); display: flex; flex-direction: column; gap: 20px; max-height: 90svh; overflow-y: auto;">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+        <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #B5654A;">Sua cota</span>
+        <button type="button" onClick="{{ closeModal }}" aria-label="Fechar" style="all: unset; cursor: pointer; font-size: 1.1rem; line-height: 1; color: rgba(28,26,23,.5);" style-hover="color: #1C1A17;">✕</button>
+      </div>
+      <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.6rem, 5vw, 2.1rem); line-height: 1.1;">{{ modalTitulo }}</h3>
+      <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: 2.4rem; line-height: 1; color: #B5654A;">{{ modalValor }}</p>
+      <div style="display: flex; gap: 18px; align-items: center; border-top: 1px solid rgba(28,26,23,.18); border-bottom: 1px solid rgba(28,26,23,.18); padding: 20px 0;">
+        <div style="width: 112px; height: 112px; flex: 0 0 auto; background: #E8E2D6; border: 1px solid rgba(28,26,23,.14); display: grid; place-items: center; text-align: center;">
+          <span style="font: 500 0.5rem/1.5 'Space Grotesk', sans-serif; letter-spacing: .2em; color: rgba(28,26,23,.5);">QR CODE<br>PIX</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+          <span style="font: 500 0.54rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(28,26,23,.5);">Chave PIX</span>
+          <span style="font: 400 0.95rem/1.5 'Space Grotesk', sans-serif; word-break: break-all;">{{ pixKey }}</span>
+        </div>
+      </div>
+      <button type="button" onClick="{{ copyPix }}" style="all: unset; cursor: pointer; text-align: center; background: #1C1A17; color: #F7F3EC; padding: 16px 24px; font: 500 0.62rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; transition: background 350ms;" style-hover="background: #B5654A;" style-focus="outline: 2px solid #B5654A; outline-offset: 3px;">{{ copyLabel }}</button>
+      <p style="margin: 0; font: 300 0.82rem/1.65 'Space Grotesk', sans-serif; color: rgba(28,26,23,.6);">Depois de enviar, se quiser, manda um print no WhatsApp para a gente saber de quem veio. Sem pressa e sem obrigação nenhuma.</p>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;pixKey&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;natanelaura@pix.com.br&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Presentes&quot;},&quot;showCountdown&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Abertura&quot;}}">
+class Component extends DCLogic {
+  state = {
+    now: Date.now(),
+    navVisible: false,
+    active: 'abertura',
+    step: 1,
+    sent: false,
+    nome: '', vai: null, acomp: 0, nomes: '', restricao: '', recado: '',
+    modal: null, copied: false, outroValor: '',
+    muralNome: '', muralMsg: '',
+    recados: [
+      { nome: 'Tia Cléo', msg: 'Eu já chorei só de ler o convite. Imagina no dia.', bg: '#EFE9DC', rot: 'rotate(-1.6deg)' },
+      { nome: 'Marcos e Duda', msg: 'Reservem a pista, a gente vai fechar o bar com vocês.', bg: '#E7E7DC', rot: 'rotate(1.2deg)' },
+      { nome: 'Fernanda', msg: 'Oito anos esperando esse link. Valeu a pena.', bg: '#F0E6DC', rot: 'rotate(-0.8deg)' },
+      { nome: 'Seu Antônio', msg: 'Levo o violão? Levo o violão.', bg: '#EDEADF', rot: 'rotate(2deg)' }
+    ]
+  };
+
+  target = new Date('2027-03-22T16:00:00-03:00').getTime();
+  secs = ['abertura', 'historia', 'dia', 'rsvp', 'presentes', 'recados'];
+  navMeta = [['01', 'Abertura'], ['02', 'História'], ['03', 'O dia'], ['04', 'Presença'], ['05', 'Presentes'], ['06', 'Recados']];
+
+  cotasBase = [
+    { titulo: 'O café de todo domingo de manhã', frase: 'Um ano inteiro de grãos bons e nenhuma pressa.', valor: 'R$ 80', d1: 'M7 12h14v7a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z', d2: 'M21 14h2.5a2.5 2.5 0 0 1 0 5H21M9 8V5M13 8V4M17 8V5' },
+    { titulo: 'Nossa geladeira cheia no primeiro mês', frase: 'Para não começar a vida casados comendo miojo.', valor: 'R$ 150', d1: 'M9 4h14v24H9z', d2: 'M9 14h14M12 9v3M12 18v4' },
+    { titulo: 'Um jantar em Roma', frase: 'Massa, vinho da casa e briga por quem paga a conta.', valor: 'R$ 250', d1: 'M11 4v10a3 3 0 0 0 6 0V4M14 4v22', d2: 'M22 4c-2 2-2 6-2 8h4c0-2 0-6-2-8zM22 12v16' },
+    { titulo: 'A primeira noite da lua de mel', frase: 'Aquela com vista para o mar que a gente não ia pagar.', valor: 'R$ 400', d1: 'M4 22v-7a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v7', d2: 'M4 22h24v4M8 12V8h16v4' },
+    { titulo: 'As plantas da sala', frase: 'Laura promete regar. Natan promete lembrar ela.', valor: 'R$ 120', d1: 'M16 28V13', d2: 'M16 13c0-5-4-8-9-8 0 5 4 8 9 8zM16 16c0-4 3-7 8-7 0 4-3 7-8 7z' },
+    { titulo: 'Uma noite de cinema por mês', frase: 'Doze filmes, doze pipocas, um ano de sofá.', valor: 'R$ 180', d1: 'M4 8h24v16H4z', d2: 'M4 13h24M9 8v5M15 8v5M21 8v5' },
+    { titulo: 'A estrada até o litoral', frase: 'Tanque cheio, playlist ruim, janela aberta.', valor: 'R$ 300', d1: 'M4 20l3-7h18l3 7v5H4z', d2: 'M8 25v2M24 25v2M9 20h14' },
+    { titulo: 'O jantar de aniversário de um ano', frase: 'Já queremos comemorar antes mesmo de casar.', valor: 'R$ 500', d1: 'M8 15h16v13H8z', d2: 'M6 15c0-3 4-3 4 0M16 4v4M16 8c-2 0-3 2-1 3' }
+  ];
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.setupReveal();
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => {
+        this.raf = null;
+        const y = window.scrollY;
+        const vis = y > window.innerHeight * 0.55;
+        let act = this.state.active;
+        for (const id of this.secs) {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) act = id;
+        }
+        if (vis !== this.state.navVisible || act !== this.state.active) this.setState({ navVisible: vis, active: act });
+        if (!this.reduced) {
+          document.querySelectorAll('[data-parallax]').forEach(el => {
+            const r = el.getBoundingClientRect();
+            const off = (r.top + r.height / 2 - window.innerHeight / 2) * -0.045;
+            el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0) scale(1.06)';
+          });
+        }
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentDidUpdate() { this.setupReveal(); }
+
+  componentWillUnmount() {
+    clearInterval(this.tick);
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  setupReveal() {
+    const nodes = document.querySelectorAll('[data-reveal]:not([data-seen])');
+    if (!nodes.length) return;
+    if (this.reduced) { nodes.forEach(n => n.setAttribute('data-seen', '1')); return; }
+    if (!this.io) {
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const d = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+          el.style.transitionDelay = d + 'ms';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          this.io.unobserve(el);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }
+    nodes.forEach(n => {
+      n.setAttribute('data-seen', '1');
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(20px)';
+      n.style.transition = 'opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1)';
+      this.io.observe(n);
+    });
+  }
+
+  handleSubmit(data) {
+    // integrar API
+    console.log('RSVP', data);
+  }
+
+  render_nav() {
+    return this.secs.map((id, i) => ({
+      n: this.navMeta[i][0],
+      label: this.navMeta[i][1],
+      aria: 'Ir para ' + this.navMeta[i][1],
+      color: this.state.active === id ? '#1C1A17' : 'rgba(28,26,23,.38)',
+      w: this.state.active === id ? '26px' : '10px',
+      go: () => {
+        const el = document.getElementById(id);
+        if (el) window.scrollTo({ top: el.offsetTop, behavior: this.reduced ? 'auto' : 'smooth' });
+      }
+    }));
+  }
+
+  renderVals() {
+    const s = this.state;
+    const diff = Math.max(0, this.target - s.now);
+    const dias = Math.floor(diff / 86400000);
+    const horas = Math.floor(diff / 3600000) % 24;
+    const min = Math.floor(diff / 60000) % 60;
+    const pad = n => String(n).padStart(2, '0');
+
+    const total = 5;
+    const nao = s.vai === false;
+    const lastStep = nao ? 5 : 5;
+
+    const cotasFeitas = 23;
+    const openCota = c => () => this.setState({ modal: { titulo: c.titulo, valor: c.valor }, copied: false });
+
+    const stepTitles = ['', 'Passo 1 de 5', 'Passo 2 de 5', 'Passo 3 de 5', 'Passo 4 de 5', 'Passo 5 de 5'];
+    const nome1 = (s.nome || '').trim().split(' ')[0];
+
+    const next = e => {
+      if (e && e.preventDefault) e.preventDefault();
+      if (s.step === 1 && !s.nome.trim()) return;
+      if (s.step === 2 && s.vai === null) return;
+      if (s.step === 5 || (nao && s.step === 2)) {
+        this.handleSubmit({ nome: s.nome, vai: s.vai, acompanhantes: s.acomp, nomes: s.nomes, restricao: s.restricao, recado: s.recado });
+        this.setState({ sent: true });
+        return;
+      }
+      this.setState({ step: Math.min(5, s.step + 1) });
+    };
+
+    return {
+      showCountdown: this.props.showCountdown !== false,
+      cd: { dias: pad(dias), horas: pad(horas), min: pad(min) },
+      nav: this.render_nav(),
+      navOpacity: s.navVisible ? 1 : 0,
+      navPointer: s.navVisible ? 'auto' : 'none',
+
+      formOpen: !s.sent,
+      sent: s.sent,
+      stepLabel: stepTitles[s.step],
+      progressW: (nao && s.step >= 2 ? 100 : (s.step / total) * 100) + '%',
+      isStep1: s.step === 1, isStep2: s.step === 2, isStep3: s.step === 3 && !nao,
+      isStep4: s.step === 4 && !nao, isStep5: s.step === 5 && !nao,
+      q2: nome1 ? nome1 + ', você vai?' : 'Você vai?',
+      nome: s.nome, nomes: s.nomes, restricao: s.restricao, recado: s.recado,
+      acomp: s.acomp,
+      acompLabel: s.acomp === 0 ? 'vou sozinho(a)' : s.acomp === 1 ? 'pessoa' : 'pessoas',
+      hasAcomp: s.acomp > 0,
+      simBorder: s.vai === true ? '#D98F6C' : 'rgba(247,243,236,.28)',
+      simBg: s.vai === true ? 'rgba(217,143,108,.14)' : 'transparent',
+      naoBorder: s.vai === false ? '#D98F6C' : 'rgba(247,243,236,.28)',
+      naoBg: s.vai === false ? 'rgba(217,143,108,.14)' : 'transparent',
+      nextLabel: (s.step === 5 || (nao && s.step === 2)) ? 'Enviar confirmação' : s.step === 4 ? 'Continuar' : 'Continuar',
+      backDisabled: s.step === 1,
+      backOpacity: s.step === 1 ? 0 : 1,
+      successTitle: s.vai === false ? 'Vamos sentir sua falta' : 'Está confirmado' + (nome1 ? ', ' + nome1 : ''),
+      successText: s.vai === false
+        ? 'Obrigado por avisar com carinho. Guardamos um abraço para a próxima vez que a gente se ver.'
+        : 'Anotamos seu nome na lista e já estamos imaginando você lá. Em fevereiro mandamos os últimos detalhes por WhatsApp.',
+      onNext: next,
+      onBack: () => this.setState({ step: Math.max(1, s.step - 1) }),
+      setSim: () => this.setState({ vai: true, step: 3 }),
+      setNao: () => this.setState({ vai: false }),
+      plus: () => this.setState({ acomp: Math.min(8, s.acomp + 1) }),
+      minus: () => this.setState({ acomp: Math.max(0, s.acomp - 1) }),
+      onNome: e => this.setState({ nome: e.target.value }),
+      onNomes: e => this.setState({ nomes: e.target.value }),
+      onRestricao: e => this.setState({ restricao: e.target.value }),
+      onRecado: e => this.setState({ recado: e.target.value }),
+      resetForm: () => this.setState({ sent: false, step: 1, nome: '', vai: null, acomp: 0, nomes: '', restricao: '', recado: '' }),
+
+      cotas: this.cotasBase.map((c, i) => Object.assign({}, c, { n: String(i + 1).padStart(2, '0'), open: openCota(c) })),
+      cotasFeitas,
+      cotasW: Math.round((cotasFeitas / 60) * 100) + '%',
+      outroValor: s.outroValor,
+      onOutroValor: e => this.setState({ outroValor: e.target.value.replace(/[^0-9.,]/g, '') }),
+      openOutro: () => this.setState({ modal: { titulo: 'Contribuir com outro valor', valor: s.outroValor ? 'R$ ' + s.outroValor : 'Valor livre' }, copied: false }),
+
+      modalOpen: !!s.modal,
+      modalTitulo: s.modal ? s.modal.titulo : '',
+      modalValor: s.modal ? s.modal.valor : '',
+      pixKey: this.props.pixKey || 'natanelaura@pix.com.br',
+      copyLabel: s.copied ? '✓ Chave copiada' : 'Copiar chave PIX',
+      copyPix: () => {
+        const k = this.props.pixKey || 'natanelaura@pix.com.br';
+        if (navigator.clipboard) navigator.clipboard.writeText(k).catch(() => {});
+        this.setState({ copied: true });
+        clearTimeout(this.ct);
+        this.ct = setTimeout(() => this.setState({ copied: false }), 2400);
+      },
+      closeModal: () => this.setState({ modal: null }),
+      stop: e => e.stopPropagation(),
+
+      recados: s.recados,
+      muralNome: s.muralNome, muralMsg: s.muralMsg,
+      onMuralNome: e => this.setState({ muralNome: e.target.value }),
+      onMuralMsg: e => this.setState({ muralMsg: e.target.value }),
+      onMural: e => {
+        e.preventDefault();
+        if (!s.muralMsg.trim()) return;
+        const bgs = ['#EFE9DC', '#E7E7DC', '#F0E6DC', '#EDEADF'];
+        const rot = 'rotate(' + (Math.random() * 3.6 - 1.8).toFixed(2) + 'deg)';
+        this.setState({
+          recados: [{ nome: s.muralNome.trim() || 'Anônimo', msg: s.muralMsg.trim(), bg: bgs[s.recados.length % 4], rot }].concat(s.recados),
+          muralNome: '', muralMsg: ''
+        });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
