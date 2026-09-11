@@ -8,9 +8,7 @@
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Natan &amp; Laura — 22 de março de 2027</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -31,7 +29,7 @@
 <div style="position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0.045; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E&quot;); mix-blend-mode: multiply;"></div>
 
 <nav aria-label="Seções" style="position: fixed; right: clamp(10px, 2.5vw, 34px); top: 50%; transform: translateY(-50%); z-index: 80; display: flex; flex-direction: column; gap: 14px; transition: opacity 500ms cubic-bezier(.22,.61,.36,1); opacity: {{ navOpacity }}; pointer-events: {{ navPointer }};">
-  <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+  <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
     <button type="button" onClick="{{ item.go }}" aria-label="{{ item.aria }}" style="all: unset; cursor: pointer; display: flex; align-items: center; justify-content: flex-end; gap: 8px; font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .18em; color: {{ item.color }};">
       <span style="display: none;" data-navlabel="1">{{ item.label }}</span>
       <span>{{ item.n }}</span>
@@ -45,25 +43,25 @@
   <!-- 01 ABERTURA -->
   <section id="abertura" data-screen-label="01 Abertura" style="min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(22px, 5vw, 56px) clamp(20px, 5vw, 64px) clamp(20px, 3vw, 40px);">
     <header style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
-      <span style="font: 500 0.6rem/1.4 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.55);">Vamos<br>casar</span>
-      <span style="font: 500 0.6rem/1.4 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.55); text-align: right;">Haras Residence<br>São Cristóvão · Sergipe</span>
+      <span style="font: 500 0.6rem/1.4 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.55); white-space: pre-line;">{{ taglineTopo }}</span>
+      <span style="font: 500 0.6rem/1.4 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.55); text-align: right; white-space: pre-line;">{{ localTopo }}</span>
     </header>
 
     <div style="display: flex; flex-direction: column; align-items: stretch; margin: clamp(28px, 6vh, 70px) 0;">
       <h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 700; line-height: .82; letter-spacing: -0.02em; font-size: clamp(4.2rem, 23vw, 16rem);">
-        <span data-reveal="1" style="display: block;">Natan</span>
+        <span data-reveal="1" style="display: block;">{{ noivoNome }}</span>
         <span style="display: flex; align-items: baseline; gap: clamp(10px, 2vw, 28px); justify-content: flex-end; margin-right: clamp(-14px, -1vw, 0px);">
           <em data-reveal="1" data-reveal-delay="120" style="font-style: italic; font-weight: 400; color: #B5654A; font-size: 1.15em; line-height: .7;">&amp;</em>
-          <span data-reveal="1" data-reveal-delay="200" style="display: block;">Laura</span>
+          <span data-reveal="1" data-reveal-delay="200" style="display: block;">{{ noivaNome }}</span>
         </span>
       </h1>
-      <p data-reveal="1" data-reveal-delay="320" style="margin: clamp(20px, 3vh, 34px) 0 0; max-width: 34ch; font: 300 clamp(0.95rem, 1.05vw, 1.05rem)/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72);">Um retiro que ela quase não foi, um louvor cantado a dois sem se conhecerem, e um pedido de namoro no Dia Mundial dos Jovens Adventistas. Agora é a vez do sim. Queremos você lá.</p>
+      <p data-reveal="1" data-reveal-delay="320" style="margin: clamp(20px, 3vh, 34px) 0 0; max-width: 34ch; font: 300 clamp(0.95rem, 1.05vw, 1.05rem)/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72);">{{ fraseAbertura }}</p>
     </div>
 
     <footer data-reveal="1" data-reveal-delay="400" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 16px;">
       <div style="display: flex; flex-direction: column; gap: 6px;">
-        <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .3em; color: rgba(28,26,23,.5);">22.03.2027</span>
-        <span style="font: 300 0.8rem/1 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">segunda-feira, 16h</span>
+        <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .3em; color: rgba(28,26,23,.5);">{{ dataTexto }}</span>
+        <span style="font: 300 0.8rem/1 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">{{ horaTexto }}</span>
       </div>
       <sc-if value="{{ showCountdown }}" hint-placeholder-val="{{ true }}">
         <div aria-label="Contagem regressiva" style="display: flex; align-items: flex-end; gap: clamp(16px, 3vw, 38px);">
@@ -87,146 +85,36 @@
     </footer>
   </section>
 
-  <!-- 02 NOSSA HISTÓRIA -->
-  <section id="historia" data-screen-label="02 Nossa história" style="padding: clamp(70px, 12vh, 150px) 0 clamp(60px, 10vh, 120px);">
-    <div style="padding: 0 clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
-      <h2 data-reveal="1" style="margin: 0; display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em;">
-        <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">01</span>
-        <span>Nossa história</span>
-      </h2>
-      <span data-reveal="1" data-reveal-delay="120" style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(28,26,23,.45);">Fev 2024 — nov 2025</span>
-    </div>
-
-    <div style="position: relative; padding: clamp(30px, 5vh, 56px) clamp(20px, 5vw, 64px) 0;">
-      <div style="position: absolute; left: 20px; top: 6px; bottom: 6px; width: 1px; background: rgba(28,26,23,.18);"></div>
-      <div style="display: flex; flex-direction: column; gap: clamp(56px, 8vh, 88px); max-width: 620px;">
-      <article data-reveal="1" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
-        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
-        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 300 400" width="52%" style="overflow: visible;" aria-hidden="true">
-            <line x1="30" y1="340" x2="270" y2="340" stroke="#1C1A17" stroke-opacity=".15" stroke-width="1"></line>
-            <path d="M40 340 L70 288 L100 340 Z" fill="none" stroke="#B5654A" stroke-width="1.2" stroke-linejoin="round"></path>
-            <path d="M70 288 L70 268" stroke="#B5654A" stroke-width="1.2"></path>
-            <rect x="136" y="140" width="28" height="52" rx="14" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></rect>
-            <line x1="142" y1="155" x2="158" y2="155" stroke="#1C1A17" stroke-opacity=".35" stroke-width="1"></line>
-            <line x1="142" y1="165" x2="158" y2="165" stroke="#1C1A17" stroke-opacity=".35" stroke-width="1"></line>
-            <line x1="142" y1="175" x2="158" y2="175" stroke="#1C1A17" stroke-opacity=".35" stroke-width="1"></line>
-            <path d="M124 176 a26 26 0 0 0 52 0" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></path>
-            <line x1="150" y1="202" x2="150" y2="222" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
-            <line x1="134" y1="222" x2="166" y2="222" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></line>
-            <path d="M198 150 q2 -18 20 -20" fill="none" stroke="#B5654A" stroke-width="1.2" stroke-linecap="round"></path>
-            <circle cx="196" cy="152" r="6" fill="#B5654A"></circle>
-            <path d="M212 118 q2 -14 16 -16" fill="none" stroke="#B5654A" stroke-width="1.2" stroke-linecap="round"></path>
-            <circle cx="210" cy="120" r="5" fill="#B5654A"></circle>
-          </svg>
-        </div>
-        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
-          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">Fev 2024</span>
-        </div>
-        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">Um retiro que ele quase não foi</h3>
-        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">Ela veio da Igreja de Santos Dumont 1 para o retiro na Igreja do Japãozinho, onde Natan congrega. Cantaram juntos em todos os cultos sem nem se conhecer — até ele, responsável pelos louvores, convidá-la para cantar ao seu lado.</p>
-      </article>
-
-      <article data-reveal="1" data-reveal-delay="80" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
-        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
-        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 400 300" width="60%" style="overflow: visible;" aria-hidden="true">
-            <path d="M60 220 L60 110 Q130 96 200 110 L200 224 Q130 208 60 220 Z" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linejoin="round"></path>
-            <path d="M340 220 L340 110 Q270 96 200 110 L200 224 Q270 208 340 220 Z" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linejoin="round"></path>
-            <line x1="76" y1="140" x2="180" y2="132" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
-            <line x1="76" y1="158" x2="180" y2="150" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
-            <line x1="76" y1="176" x2="180" y2="168" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
-            <line x1="220" y1="132" x2="324" y2="140" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
-            <line x1="220" y1="150" x2="324" y2="158" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
-            <line x1="220" y1="168" x2="324" y2="176" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1"></line>
-            <rect x="200" y="150" width="18" height="72" rx="4" fill="none" stroke="#B5654A" stroke-width="1.2" transform="translate(0 -40)"></rect>
-            <path d="M200 88 q9 -18 18 0 q0 10 -9 14 q-9 -4 -9 -14 Z" fill="#B5654A" stroke="none" transform="translate(0 -1)"></path>
-          </svg>
-        </div>
-        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
-          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">Fev/Mar 2024</span>
-        </div>
-        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">Dez dias de oração</h3>
-        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">Depois do retiro, começaram a se encontrar para ler juntos os 10 Dias de Oração. Foi nesse mês que tudo passou a fazer sentido.</p>
-      </article>
-
-      <article data-reveal="1" data-reveal-delay="160" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
-        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
-        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 320 320" width="46%" style="overflow: visible;" aria-hidden="true">
-            <circle cx="110" cy="168" r="36" fill="none" stroke="#B5654A" stroke-width="1.3"></circle>
-            <line x1="20" y1="168" x2="300" y2="168" stroke="#1C1A17" stroke-opacity=".18" stroke-width="1"></line>
-            <path d="M20 190 q20 -14 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#1C1A17" stroke-opacity=".3" stroke-width="1.1"></path>
-            <path d="M20 214 q20 -14 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#1C1A17" stroke-opacity=".22" stroke-width="1.1"></path>
-            <path d="M244 168 Q234 108 250 66" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></path>
-            <path d="M250 66 Q222 60 208 78" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
-            <path d="M250 66 Q236 40 250 20" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
-            <path d="M250 66 Q262 36 288 30" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
-            <path d="M250 66 Q270 76 292 68" fill="none" stroke="#1C1A17" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"></path>
-          </svg>
-        </div>
-        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
-          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">21 mar 2024</span>
-        </div>
-        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">O pedido de namoro</h3>
-        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">No Dia Mundial dos Jovens Adventistas, na Barra dos Coqueiros, Natan pediu Laura em namoro.</p>
-      </article>
-
-      <article data-reveal="1" data-reveal-delay="240" style="position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 16px;">
-        <span style="position: absolute; left: 14px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #F7F3EC; border: 2px solid #B5654A;"></span>
-        <div data-parallax="1" style="overflow: hidden; background: #E8E2D6; border: 1px solid rgba(28,26,23,.12); aspect-ratio: 16/10; width: 100%; display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 320 400" width="42%" style="overflow: visible;" aria-hidden="true">
-            <path d="M100 190 a70 70 0 1 1 120 0 q-8 20 -60 20 t-60 -20 Z" fill="none" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linejoin="round"></path>
-            <line x1="160" y1="205" x2="160" y2="270" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
-            <line x1="70" y1="300" x2="250" y2="300" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round"></line>
-            <line x1="70" y1="300" x2="70" y2="320" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
-            <line x1="250" y1="300" x2="250" y2="320" stroke="#1C1A17" stroke-opacity=".7" stroke-width="1.3"></line>
-            <line x1="90" y1="284" x2="90" y2="300" stroke="#1C1A17" stroke-opacity=".4" stroke-width="1"></line>
-            <line x1="230" y1="284" x2="230" y2="300" stroke="#1C1A17" stroke-opacity=".4" stroke-width="1"></line>
-            <circle cx="182" cy="98" r="20" fill="none" stroke="#B5654A" stroke-width="1.4"></circle>
-            <circle cx="206" cy="86" r="20" fill="none" stroke="#B5654A" stroke-width="1.4"></circle>
-          </svg>
-        </div>
-        <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid rgba(28,26,23,.18); padding-top: 12px;">
-          <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; color: #B5654A;">20 nov 2025</span>
-        </div>
-        <h3 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.05;">O noivado</h3>
-        <p style="margin: 0; font: 300 0.92rem/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">No Parque da Sementeira, cercados de família e amigos, veio o pedido de noivado.</p>
-      </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 O GRANDE DIA -->
-  <section id="dia" data-screen-label="03 O grande dia" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
+  <!-- 02 O GRANDE DIA -->
+  <section id="dia" data-screen-label="02 O grande dia" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
     <h2 data-reveal="1" style="margin: 0 0 clamp(34px, 6vh, 64px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
-      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">02</span>
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">01</span>
       <span>O grande dia</span>
     </h2>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 3vw, 40px);">
       <article data-reveal="1" style="border: 1px solid rgba(28,26,23,.18); padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 18px; background: rgba(255,255,255,.35);">
         <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: #B5654A;">Cerimônia</span>
-        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1;">16h00</p>
-        <p style="margin: 0; font: 300 0.95rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">Haras Residence<br>São Cristóvão, SE — endereço a confirmar</p>
-        <p style="margin: 0; font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(28,26,23,.55);">Chegue uns 20 minutos antes. A cerimônia começa no horário, prometemos.</p>
-        <a href="https://maps.google.com" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #B5654A; padding-bottom: 5px; transition: opacity 300ms;" style-hover="opacity: .55;">Abrir no mapa ↗</a>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1;">{{ cerimoniaHora }}</p>
+        <p style="margin: 0; font: 300 0.95rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75); white-space: pre-line;">{{ cerimoniaLocal }}</p>
+        <p style="margin: 0; font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(28,26,23,.55);">{{ cerimoniaObs }}</p>
+        <a href="{{ cerimoniaMapaUrl }}" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #B5654A; padding-bottom: 5px; transition: opacity 300ms;" style-hover="opacity: .55;">Abrir no mapa ↗</a>
       </article>
 
       <article data-reveal="1" data-reveal-delay="120" style="border: 1px solid rgba(28,26,23,.18); padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 18px; background: rgba(255,255,255,.35);">
         <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: #B5654A;">Recepção</span>
-        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1;">18h30</p>
-        <p style="margin: 0; font: 300 0.95rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75);">Haras Residence<br>mesmo espaço da cerimônia</p>
-        <p style="margin: 0; font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(28,26,23,.55);">Jantar servido às 20h. A festa vai até as 3h — leve sapato de dançar.</p>
-        <a href="https://maps.google.com" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #B5654A; padding-bottom: 5px; transition: opacity 300ms;" style-hover="opacity: .55;">Abrir no mapa ↗</a>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1;">{{ recepcaoHora }}</p>
+        <p style="margin: 0; font: 300 0.95rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.75); white-space: pre-line;">{{ recepcaoLocal }}</p>
+        <p style="margin: 0; font: 300 0.85rem/1.6 'Space Grotesk', sans-serif; color: rgba(28,26,23,.55);">{{ recepcaoObs }}</p>
+        <a href="{{ recepcaoMapaUrl }}" target="_blank" rel="noopener" style="margin-top: auto; align-self: flex-start; font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #B5654A; padding-bottom: 5px; transition: opacity 300ms;" style-hover="opacity: .55;">Abrir no mapa ↗</a>
       </article>
     </div>
 
     <div style="margin-top: clamp(40px, 7vh, 80px); display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(24px, 3vw, 48px); border-top: 1px solid rgba(28,26,23,.18); padding-top: clamp(28px, 4vh, 48px);">
       <div data-reveal="1" style="display: flex; flex-direction: column; gap: 14px;">
         <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.5);">Dress code</span>
-        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">Esporte fino, tons de terra</p>
-        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">Nada de preto fechado nem branco. Pense em areia, oliva, argila, café.</p>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">{{ dressCodeTitulo }}</p>
+        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">{{ dressCodeDesc }}</p>
         <div style="display: flex; gap: 8px; margin-top: 4px;">
           <span title="Areia" style="width: 34px; height: 34px; border-radius: 50%; background: #E3D9C6; border: 1px solid rgba(28,26,23,.12);"></span>
           <span title="Oliva" style="width: 34px; height: 34px; border-radius: 50%; background: #6B7A5A;"></span>
@@ -237,21 +125,21 @@
       </div>
       <div data-reveal="1" data-reveal-delay="100" style="display: flex; flex-direction: column; gap: 14px;">
         <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.5);">Estacionamento</span>
-        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">Tem vaga para todo mundo</p>
-        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">Estacionamento gratuito com manobrista na entrada da fazenda. Se preferir vir de aplicativo, o sinal é bom no local.</p>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">{{ estacionamentoTitulo }}</p>
+        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">{{ estacionamentoDesc }}</p>
       </div>
       <div data-reveal="1" data-reveal-delay="200" style="display: flex; flex-direction: column; gap: 14px;">
         <span style="font: 500 0.58rem/1 'Space Grotesk', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: rgba(28,26,23,.5);">Onde ficar</span>
-        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">Para quem vem de fora</p>
-        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">Em breve indicamos opções de hospedagem próximas ao Haras Residence, em São Cristóvão.</p>
+        <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 1.5rem; line-height: 1.15;">{{ hospedagemTitulo }}</p>
+        <p style="margin: 0; font: 300 0.88rem/1.7 'Space Grotesk', sans-serif; color: rgba(28,26,23,.7);">{{ hospedagemDesc }}</p>
       </div>
     </div>
   </section>
 
-  <!-- 04 RSVP -->
-  <section id="rsvp" data-screen-label="04 Confirmação" style="background: #1C1A17; color: #F7F3EC; padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(70px, 12vh, 150px);">
+  <!-- 03 RSVP -->
+  <section id="rsvp" data-screen-label="03 Confirmação" style="background: #1C1A17; color: #F7F3EC; padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(70px, 12vh, 150px);">
     <h2 data-reveal="1" style="margin: 0 0 clamp(30px, 5vh, 56px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(247,243,236,.2); padding-bottom: 18px;">
-      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #D98F6C;">03</span>
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #D98F6C;">02</span>
       <span>Confirme sua presença</span>
     </h2>
 
@@ -335,22 +223,14 @@
     </div>
   </section>
 
-  <!-- 05 PRESENTES -->
-  <section id="presentes" data-screen-label="05 Presentes" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
+  <!-- 04 PRESENTES -->
+  <section id="presentes" data-screen-label="04 Presentes" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
     <h2 data-reveal="1" style="margin: 0 0 clamp(24px, 4vh, 40px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
-      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">04</span>
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">03</span>
       <span>Cotas de sonho</span>
     </h2>
 
-    <div data-reveal="1" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(30px, 5vh, 54px);">
-      <p style="margin: 0; max-width: 46ch; font: 300 clamp(0.95rem, 1.1vw, 1.05rem)/1.75 'Space Grotesk', sans-serif; color: rgba(28,26,23,.72); text-wrap: pretty;">Já temos torradeira, jogo de panelas e toalhas demais. O que ainda não temos são as histórias do que vem depois. Se quiser fazer parte de alguma delas, escolha uma cota abaixo. E se preferir só aparecer e dançar, também está ótimo.</p>
-      <div style="min-width: 220px; display: flex; flex-direction: column; gap: 10px;">
-        <span style="font: 500 0.56rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: rgba(28,26,23,.5);">Já recebemos {{ cotasFeitas }} de 60 cotas</span>
-        <span style="display: block; height: 1px; background: rgba(28,26,23,.18);"><span style="display: block; height: 1px; background: #B5654A; transition: width 700ms cubic-bezier(.22,.61,.36,1); width: {{ cotasW }};"></span></span>
-      </div>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 1px; background: rgba(28,26,23,.18); border: 1px solid rgba(28,26,23,.18);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 1px; background: rgba(28,26,23,.18); border: 1px solid rgba(28,26,23,.18); margin-top: clamp(30px, 5vh, 54px);">
       <sc-for list="{{ cotas }}" as="c" hint-placeholder-count="8">
         <article data-reveal="1" style="background: #F7F3EC; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 14px; min-height: 260px; transition: background 400ms;" style-hover="background: #F1EBE0;">
           <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
@@ -382,10 +262,10 @@
     </div>
   </section>
 
-  <!-- 06 RECADOS -->
-  <section id="recados" data-screen-label="06 Recados" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
+  <!-- 05 RECADOS -->
+  <section id="recados" data-screen-label="05 Recados" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 5vw, 64px) clamp(60px, 10vh, 120px);">
     <h2 data-reveal="1" style="margin: 0 0 clamp(30px, 5vh, 54px); display: flex; align-items: baseline; gap: clamp(12px, 2vw, 26px); font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .95; letter-spacing: -0.015em; border-bottom: 1px solid rgba(28,26,23,.18); padding-bottom: 18px;">
-      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">05</span>
+      <span style="font: 500 0.6rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; color: #B5654A;">04</span>
       <span>Mural de recados</span>
     </h2>
 
@@ -413,19 +293,23 @@
 
   <!-- 07 RODAPÉ -->
   <footer style="background: #1C1A17; color: #F7F3EC; padding: clamp(60px, 10vh, 120px) clamp(20px, 5vw, 64px) clamp(30px, 5vh, 50px); display: flex; flex-direction: column; gap: clamp(34px, 6vh, 60px);">
-    <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(3rem, 15vw, 11rem); line-height: .85; letter-spacing: -0.02em;">Natan <em style="font-style: italic; font-weight: 400; color: #D98F6C;">&amp;</em> Laura</p>
+    <p style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 600; font-size: clamp(3rem, 15vw, 11rem); line-height: .85; letter-spacing: -0.02em;">{{ noivoNome }} <em style="font-style: italic; font-weight: 400; color: #D98F6C;">&amp;</em> {{ noivaNome }}</p>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; border-top: 1px solid rgba(247,243,236,.2); padding-top: 26px;">
-      <p style="margin: 0; max-width: 40ch; font: 300 0.95rem/1.75 'Space Grotesk', sans-serif; color: rgba(247,243,236,.72);">Obrigado por chegar até aqui. Casar é bonito, mas o que a gente quer mesmo é olhar em volta naquele dia e ver vocês. Até março.</p>
+      <p style="margin: 0; max-width: 40ch; font: 300 0.95rem/1.75 'Space Grotesk', sans-serif; color: rgba(247,243,236,.72);">{{ rodapeTexto }}</p>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: rgba(247,243,236,.45);">Dúvidas</span>
-        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" style="font: 300 1.05rem/1.4 'Space Grotesk', sans-serif; color: #D98F6C;">WhatsApp (11) 99999-9999</a>
-        <span style="font: 300 0.85rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.45);">Falar com a Bia, nossa cerimonialista</span>
+        <a href="{{ whatsappLink }}" target="_blank" rel="noopener" style="font: 300 1.05rem/1.4 'Space Grotesk', sans-serif; color: #D98F6C;">{{ whatsappNumero }}</a>
+        <span style="font: 300 0.85rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.45);">{{ whatsappObs }}</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <span style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: rgba(247,243,236,.45);">Quando</span>
-        <span style="font: 300 1.05rem/1.4 'Space Grotesk', sans-serif;">22.03.2027 · 16h</span>
+        <span style="font: 300 1.05rem/1.4 'Space Grotesk', sans-serif;">{{ dataTexto }} · {{ horaTexto }}</span>
         <span style="font: 300 0.85rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.45);">São Cristóvão, Sergipe</span>
       </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(247,243,236,.08); padding-top: 20px;">
+      <span style="font: 300 0.75rem/1.5 'Space Grotesk', sans-serif; color: rgba(247,243,236,.3);">Com amor, Natan & Laura</span>
+      <a href="./admin.html" style="font: 500 0.55rem/1 'Space Grotesk', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(247,243,236,.28); transition: color 300ms;" style-hover="color: #D98F6C;">Área dos noivos ↗</a>
     </div>
   </footer>
 </main>
@@ -466,6 +350,41 @@ class Component extends DCLogic {
     nome: '', vai: null, acomp: 0, nomes: '', restricao: '', recado: '',
     modal: null, copied: false, outroValor: '',
     muralNome: '', muralMsg: '',
+
+    // Configurações Dinâmicas (com defaults para carregamento instantâneo)
+    noivoNome: 'Natan',
+    noivaNome: 'Laura',
+    fraseAbertura: 'Um retiro que ela quase não foi, um louvor cantado a dois sem se conhecerem, e um pedido de namoro no Dia Mundial dos Jovens Adventistas. Agora é a vez do sim. Queremos você lá.',
+    taglineTopo: 'Vamos\ncasar',
+    localTopo: 'Haras Residence\nSão Cristóvão · Sergipe',
+    dataTexto: '22.03.2027',
+    horaTexto: 'segunda-feira, 16h',
+    showCountdown: true,
+
+    cerimoniaHora: '16h00',
+    cerimoniaLocal: 'Haras Residence\nSão Cristóvão, SE — endereço a confirmar',
+    cerimoniaObs: 'Chegue uns 20 minutos antes. A cerimônia começa no horário, prometemos.',
+    cerimoniaMapaUrl: 'https://maps.google.com',
+
+    recepcaoHora: '18h30',
+    recepcaoLocal: 'Haras Residence\nmesmo espaço da cerimônia',
+    recepcaoObs: 'Jantar servido às 20h. A festa vai até as 3h — leve sapato de dançar.',
+    recepcaoMapaUrl: 'https://maps.google.com',
+
+    dressCodeTitulo: 'Esporte fino, tons de terra',
+    dressCodeDesc: 'Nada de preto fechado nem branco. Pense em areia, oliva, argila, café.',
+    estacionamentoTitulo: 'Tem vaga para todo mundo',
+    estacionamentoDesc: 'Estacionamento gratuito com manobrista na entrada da fazenda. Se preferir vir de aplicativo, o sinal é bom no local.',
+    hospedagemTitulo: 'Para quem vem de fora',
+    hospedagemDesc: 'Em breve indicamos opções de hospedagem próximas ao Haras Residence, em São Cristóvão.',
+
+    pixKey: 'natanelaura@pix.com.br',
+    rodapeTexto: 'Obrigado por chegar até aqui. Casar é bonito, mas o que a gente quer mesmo é olhar em volta naquele dia e ver vocês. Até março.',
+    whatsappNumero: 'WhatsApp (11) 99999-9999',
+    whatsappLink: 'https://wa.me/5511999999999',
+    whatsappObs: 'Falar com a Bia, nossa cerimonialista',
+
+    cotas: null,
     recados: [
       { nome: 'Tia Cléo', msg: 'Eu já chorei só de ler o convite. Imagina no dia.', bg: '#EFE9DC', rot: 'rotate(-1.6deg)' },
       { nome: 'Marcos e Duda', msg: 'Reservem a pista, a gente vai fechar o bar com vocês.', bg: '#E7E7DC', rot: 'rotate(1.2deg)' },
@@ -475,8 +394,8 @@ class Component extends DCLogic {
   };
 
   target = new Date('2027-03-22T16:00:00-03:00').getTime();
-  secs = ['abertura', 'historia', 'dia', 'rsvp', 'presentes', 'recados'];
-  navMeta = [['01', 'Abertura'], ['02', 'História'], ['03', 'O dia'], ['04', 'Presença'], ['05', 'Presentes'], ['06', 'Recados']];
+  secs = ['abertura', 'dia', 'rsvp', 'presentes', 'recados'];
+  navMeta = [['01', 'Abertura'], ['02', 'O dia'], ['03', 'Presença'], ['04', 'Presentes'], ['05', 'Recados']];
 
   cotasBase = [
     { titulo: 'O café de todo domingo de manhã', frase: 'Um ano inteiro de grãos bons e nenhuma pressa.', valor: 'R$ 80', d1: 'M7 12h14v7a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z', d2: 'M21 14h2.5a2.5 2.5 0 0 1 0 5H21M9 8V5M13 8V4M17 8V5' },
@@ -493,6 +412,8 @@ class Component extends DCLogic {
     this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
     this.setupReveal();
+    this.loadFromPocketBase();
+
     this.onScroll = () => {
       if (this.raf) return;
       this.raf = requestAnimationFrame(() => {
@@ -516,6 +437,75 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
+  }
+
+  async loadFromPocketBase() {
+    const PB_URL = 'https://projetotest-pocketbase.zpj4h1.easypanel.host';
+    try {
+      // 1. Carregar Configurações Gerais
+      const resConfig = await fetch(PB_URL + '/api/collections/site_config/records?perPage=1');
+      if (resConfig.ok) {
+        const json = await resConfig.json();
+        if (json.items && json.items.length > 0) {
+          const cfg = json.items[0];
+          this.setState({
+            noivoNome: cfg.noivo_nome || this.state.noivoNome,
+            noivaNome: cfg.noiva_nome || this.state.noivaNome,
+            fraseAbertura: cfg.frase_abertura || this.state.fraseAbertura,
+            taglineTopo: cfg.tagline_topo || this.state.taglineTopo,
+            localTopo: cfg.local_topo || this.state.localTopo,
+            dataTexto: cfg.data_texto || this.state.dataTexto,
+            horaTexto: cfg.hora_texto || this.state.horaTexto,
+            showCountdown: cfg.mostrar_contagem !== false,
+            cerimoniaHora: cfg.cerimonia_hora || this.state.cerimoniaHora,
+            cerimoniaLocal: cfg.cerimonia_local || this.state.cerimoniaLocal,
+            cerimoniaObs: cfg.cerimonia_obs || this.state.cerimoniaObs,
+            cerimoniaMapaUrl: cfg.cerimonia_mapa_url || this.state.cerimoniaMapaUrl,
+            recepcaoHora: cfg.recepcao_hora || this.state.recepcaoHora,
+            recepcaoLocal: cfg.recepcao_local || this.state.recepcaoLocal,
+            recepcaoObs: cfg.recepcao_obs || this.state.recepcaoObs,
+            recepcaoMapaUrl: cfg.recepcao_mapa_url || this.state.recepcaoMapaUrl,
+            dressCodeTitulo: cfg.dress_code_titulo || this.state.dressCodeTitulo,
+            dressCodeDesc: cfg.dress_code_desc || this.state.dressCodeDesc,
+            estacionamentoTitulo: cfg.estacionamento_titulo || this.state.estacionamentoTitulo,
+            estacionamentoDesc: cfg.estacionamento_desc || this.state.estacionamentoDesc,
+            hospedagemTitulo: cfg.hospedagem_titulo || this.state.hospedagemTitulo,
+            hospedagemDesc: cfg.hospedagem_desc || this.state.hospedagemDesc,
+            pixKey: cfg.pix_chave || this.state.pixKey,
+            rodapeTexto: cfg.rodape_texto || this.state.rodapeTexto,
+            whatsappNumero: cfg.whatsapp_numero || this.state.whatsappNumero,
+            whatsappLink: cfg.whatsapp_link || this.state.whatsappLink,
+            whatsappObs: cfg.whatsapp_obs || this.state.whatsappObs
+          });
+          if (cfg.noivo_nome || cfg.noiva_nome) {
+            document.title = (cfg.noivo_nome || this.state.noivoNome) + ' & ' + (cfg.noiva_nome || this.state.noivaNome) + ' — ' + (cfg.data_texto || this.state.dataTexto);
+          }
+          if (cfg.data_evento) {
+            this.target = new Date(cfg.data_evento).getTime();
+          }
+        }
+      }
+
+      // 2. Carregar Cotas de Presentes
+      const resCotas = await fetch(PB_URL + '/api/collections/cotas_presentes/records?sort=ordem&filter=(ativo=true)');
+      if (resCotas.ok) {
+        const json = await resCotas.json();
+        if (json.items && json.items.length > 0) {
+          this.setState({ cotas: json.items });
+        }
+      }
+
+      // 3. Carregar Mural de Recados
+      const resRecados = await fetch(PB_URL + '/api/collections/recados/records?sort=-created&filter=(aprovado=true)&perPage=60');
+      if (resRecados.ok) {
+        const json = await resRecados.json();
+        if (json.items && json.items.length > 0) {
+          this.setState({ recados: json.items });
+        }
+      }
+    } catch (err) {
+      console.warn('PocketBase carregamento offline ou falha:', err);
+    }
   }
 
   componentDidUpdate() { this.setupReveal(); }
@@ -552,9 +542,24 @@ class Component extends DCLogic {
     });
   }
 
-  handleSubmit(data) {
-    // integrar API
-    console.log('RSVP', data);
+  async handleSubmit(data) {
+    const PB_URL = 'https://projetotest-pocketbase.zpj4h1.easypanel.host';
+    try {
+      await fetch(PB_URL + '/api/collections/rsvps/records', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: data.nome,
+          vai: data.vai,
+          acomp: data.acompanhantes,
+          nomes_acomp: data.nomes,
+          restricao: data.restricao,
+          recado: data.recado
+        })
+      });
+    } catch (e) {
+      console.error('Falha ao enviar RSVP ao PocketBase:', e);
+    }
   }
 
   render_nav() {
@@ -581,9 +586,7 @@ class Component extends DCLogic {
 
     const total = 5;
     const nao = s.vai === false;
-    const lastStep = nao ? 5 : 5;
 
-    const cotasFeitas = 23;
     const openCota = c => () => this.setState({ modal: { titulo: c.titulo, valor: c.valor }, copied: false });
 
     const stepTitles = ['', 'Passo 1 de 5', 'Passo 2 de 5', 'Passo 3 de 5', 'Passo 4 de 5', 'Passo 5 de 5'];
@@ -601,12 +604,44 @@ class Component extends DCLogic {
       this.setState({ step: Math.min(5, s.step + 1) });
     };
 
+    const cotasSource = (s.cotas && s.cotas.length > 0) ? s.cotas : this.cotasBase;
+
     return {
-      showCountdown: this.props.showCountdown !== false,
+      pageTitle: `${s.noivoNome} & ${s.noivaNome} — ${s.dataTexto}`,
+      noivoNome: s.noivoNome,
+      noivaNome: s.noivaNome,
+      fraseAbertura: s.fraseAbertura,
+      taglineTopo: s.taglineTopo,
+      localTopo: s.localTopo,
+      dataTexto: s.dataTexto,
+      horaTexto: s.horaTexto,
+      showCountdown: s.showCountdown !== false,
       cd: { dias: pad(dias), horas: pad(horas), min: pad(min) },
       nav: this.render_nav(),
       navOpacity: s.navVisible ? 1 : 0,
       navPointer: s.navVisible ? 'auto' : 'none',
+
+      cerimoniaHora: s.cerimoniaHora,
+      cerimoniaLocal: s.cerimoniaLocal,
+      cerimoniaObs: s.cerimoniaObs,
+      cerimoniaMapaUrl: s.cerimoniaMapaUrl,
+
+      recepcaoHora: s.recepcaoHora,
+      recepcaoLocal: s.recepcaoLocal,
+      recepcaoObs: s.recepcaoObs,
+      recepcaoMapaUrl: s.recepcaoMapaUrl,
+
+      dressCodeTitulo: s.dressCodeTitulo,
+      dressCodeDesc: s.dressCodeDesc,
+      estacionamentoTitulo: s.estacionamentoTitulo,
+      estacionamentoDesc: s.estacionamentoDesc,
+      hospedagemTitulo: s.hospedagemTitulo,
+      hospedagemDesc: s.hospedagemDesc,
+
+      rodapeTexto: s.rodapeTexto,
+      whatsappNumero: s.whatsappNumero,
+      whatsappLink: s.whatsappLink,
+      whatsappObs: s.whatsappObs,
 
       formOpen: !s.sent,
       sent: s.sent,
@@ -642,9 +677,18 @@ class Component extends DCLogic {
       onRecado: e => this.setState({ recado: e.target.value }),
       resetForm: () => this.setState({ sent: false, step: 1, nome: '', vai: null, acomp: 0, nomes: '', restricao: '', recado: '' }),
 
-      cotas: this.cotasBase.map((c, i) => Object.assign({}, c, { n: String(i + 1).padStart(2, '0'), open: openCota(c) })),
-      cotasFeitas,
-      cotasW: Math.round((cotasFeitas / 60) * 100) + '%',
+      cotas: cotasSource.map((c, i) => {
+        const baseItem = this.cotasBase[i % this.cotasBase.length];
+        return {
+          titulo: c.titulo,
+          frase: c.frase,
+          valor: c.valor,
+          d1: c.d1 || baseItem.d1,
+          d2: c.d2 || baseItem.d2,
+          n: String(i + 1).padStart(2, '0'),
+          open: openCota(c)
+        };
+      }),
       outroValor: s.outroValor,
       onOutroValor: e => this.setState({ outroValor: e.target.value.replace(/[^0-9.,]/g, '') }),
       openOutro: () => this.setState({ modal: { titulo: 'Contribuir com outro valor', valor: s.outroValor ? 'R$ ' + s.outroValor : 'Valor livre' }, copied: false }),
@@ -652,10 +696,10 @@ class Component extends DCLogic {
       modalOpen: !!s.modal,
       modalTitulo: s.modal ? s.modal.titulo : '',
       modalValor: s.modal ? s.modal.valor : '',
-      pixKey: this.props.pixKey || 'natanelaura@pix.com.br',
+      pixKey: s.pixKey || 'natanelaura@pix.com.br',
       copyLabel: s.copied ? '✓ Chave copiada' : 'Copiar chave PIX',
       copyPix: () => {
-        const k = this.props.pixKey || 'natanelaura@pix.com.br';
+        const k = s.pixKey || 'natanelaura@pix.com.br';
         if (navigator.clipboard) navigator.clipboard.writeText(k).catch(() => {});
         this.setState({ copied: true });
         clearTimeout(this.ct);
@@ -668,15 +712,34 @@ class Component extends DCLogic {
       muralNome: s.muralNome, muralMsg: s.muralMsg,
       onMuralNome: e => this.setState({ muralNome: e.target.value }),
       onMuralMsg: e => this.setState({ muralMsg: e.target.value }),
-      onMural: e => {
+      onMural: async (e) => {
         e.preventDefault();
         if (!s.muralMsg.trim()) return;
         const bgs = ['#EFE9DC', '#E7E7DC', '#F0E6DC', '#EDEADF'];
         const rot = 'rotate(' + (Math.random() * 3.6 - 1.8).toFixed(2) + 'deg)';
+        const novoRecado = {
+          nome: s.muralNome.trim() || 'Anônimo',
+          msg: s.muralMsg.trim(),
+          bg: bgs[s.recados.length % 4],
+          rot,
+          aprovado: true
+        };
         this.setState({
-          recados: [{ nome: s.muralNome.trim() || 'Anônimo', msg: s.muralMsg.trim(), bg: bgs[s.recados.length % 4], rot }].concat(s.recados),
-          muralNome: '', muralMsg: ''
+          recados: [novoRecado].concat(s.recados),
+          muralNome: '',
+          muralMsg: ''
         });
+
+        const PB_URL = 'https://projetotest-pocketbase.zpj4h1.easypanel.host';
+        try {
+          await fetch(PB_URL + '/api/collections/recados/records', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novoRecado)
+          });
+        } catch (err) {
+          console.error('Erro ao salvar recado no PocketBase:', err);
+        }
       }
     };
   }

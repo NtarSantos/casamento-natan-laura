@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — Natan & Laura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F3EC;
+      --surface: #FFFFFF;
+      --surface-subtle: #F1EBE0;
+      --border: rgba(28, 26, 23, 0.14);
+      --border-focus: #B5654A;
+      --text: #1C1A17;
+      --text-muted: rgba(28, 26, 23, 0.58);
+      --terracotta: #B5654A;
+      --terracotta-hover: #9c4f36;
+      --terracotta-soft: rgba(181, 101, 74, 0.1);
+      --accent-dark: #1C1A17;
+      --success: #2e7d32;
+      --danger: #c62828;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    input, textarea, button, select {
+      font-family: inherit;
+    }
+
+    /* Auth Screen */
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(32px, 5vw, 48px);
+      box-shadow: 0 12px 36px rgba(28, 26, 23, 0.06);
+    }
+    .auth-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .auth-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    /* Layout */
+    .app-layout {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .app-layout.active {
+      display: flex;
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 243, 236, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px clamp(16px, 4vw, 36px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .brand-title em {
+      color: var(--terracotta);
+      font-style: italic;
+    }
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(46, 125, 50, 0.12);
+      color: var(--success);
+      font-weight: 600;
+    }
+    .badge-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-site-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all 200ms;
+    }
+    .btn-site-link:hover {
+      background: var(--surface-subtle);
+      border-color: var(--text);
+    }
+
+    /* Tabs Navigation */
+    .tabs-bar {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(16px, 4vw, 36px);
+      background: var(--surface);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-bar::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      all: unset;
+      cursor: pointer;
+      padding: 16px 18px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all 200ms;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+    }
+    .tab-btn.active {
+      color: var(--terracotta);
+      border-bottom-color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    .main-content {
+      flex: 1;
+      padding: clamp(24px, 4vw, 40px) clamp(16px, 4vw, 36px);
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .tab-pane {
+      display: none;
+      animation: fadeIn 240ms ease;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* Sections and Cards */
+    .section-header {
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .section-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 32px);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(28, 26, 23, 0.03);
+    }
+    .card-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Forms & Inputs */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .input, .textarea, .select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color 200ms, box-shadow 200ms;
+    }
+    .input:focus, .textarea:focus, .select:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--terracotta-soft);
+      background: #FFFFFF;
+    }
+    .textarea {
+      min-height: 84px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: normal;
+      user-select: none;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--terracotta);
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn {
+      all: unset;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 250ms cubic-bezier(.22,.61,.36,1);
+    }
+    .btn-primary {
+      background: var(--accent-dark);
+      color: #F7F3EC;
+    }
+    .btn-primary:hover {
+      background: var(--terracotta);
+      transform: translateY(-1px);
+    }
+    .btn-terracotta {
+      background: var(--terracotta);
+      color: #FFFFFF;
+    }
+    .btn-terracotta:hover {
+      background: var(--terracotta-hover);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--surface-subtle);
+      border-color: var(--text);
+    }
+    .btn-danger-outline {
+      border: 1px solid rgba(198, 40, 40, 0.3);
+      color: var(--danger);
+      background: transparent;
+    }
+    .btn-danger-outline:hover {
+      background: rgba(198, 40, 40, 0.08);
+      border-color: var(--danger);
+    }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.68rem;
+    }
+
+    /* Action bar */
+    .action-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    th {
+      background: var(--surface-subtle);
+      padding: 12px 16px;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background: rgba(247, 243, 236, 0.5);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .stat-number {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--terracotta);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(28, 26, 23, 0.6);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      background: var(--accent-dark);
+      color: #F7F3EC;
+      padding: 14px 22px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 300ms cubic-bezier(.22,.61,.36,1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast.error {
+      background: var(--danger);
+    }
+    .toast.success {
+      background: #1b5e20;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tela de Login -->
+  <div id="authScreen" class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title">Natan <em>&</em> Laura</h1>
+      <p class="auth-subtitle">Painel de Administração do Casamento</p>
+      
+      <form id="loginForm" onsubmit="handleLogin(event)" style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="form-group">
+          <label for="loginEmail">E-mail de Administrador</label>
+          <input id="loginEmail" type="email" class="input" required value="natanaiwork@gmail.com" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Senha</label>
+          <input id="loginPassword" type="password" class="input" required placeholder="••••••••">
+        </div>
+        <button id="loginSubmitBtn" type="submit" class="btn btn-primary" style="margin-top: 10px; padding: 14px;">
+          Entrar no Painel
+        </button>
+        <p id="loginError" style="display: none; color: var(--danger); font-size: 0.82rem; text-align: center; margin-top: 4px;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Painel Administrativo -->
+  <div id="appLayout" class="app-layout">
+    
+    <!-- Navbar Superior -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <span class="brand-title">Natan <em>&</em> Laura</span>
+        <span class="badge-status"><span class="dot"></span> PocketBase Conectado</span>
+      </div>
+      <div class="nav-actions">
+        <a href="./Natan e Laura.dc.html" target="_blank" class="btn-site-link">Visualizar Site ↗</a>
+        <button onclick="handleLogout()" class="btn btn-outline btn-sm">Sair</button>
+      </div>
+    </header>
+
+    <!-- Barra de Abas -->
+    <nav class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('tab-geral')">01. Abertura & Noivos</button>
+      <button class="tab-btn" onclick="switchTab('tab-dia')">02. O Grande Dia</button>
+      <button class="tab-btn" onclick="switchTab('tab-cotas')">03. Cotas & PIX</button>
+      <button class="tab-btn" onclick="switchTab('tab-recados')">04. Mural de Recados</button>
+      <button class="tab-btn" onclick="switchTab('tab-rsvp')">05. Lista de Presença (RSVP)</button>
+      <button class="tab-btn" onclick="switchTab('tab-rodape')">06. Rodapé & Contatos</button>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+
+      <!-- ABA 01: ABERTURA & NOIVOS -->
+      <section id="tab-geral" class="tab-pane active">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Abertura & Noivos</h2>
+            <p class="section-desc">Gerencie os títulos de abertura, nomes, história e contagem regressiva.</p>
+          </div>
+          <button onclick="saveSiteConfig()" class="btn btn-terracotta">Salvar Alterações</button>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Identidade dos Noivos</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_noivo_nome">Nome do Noivo</label>
+              <input id="cfg_noivo_nome" type="text" class="input">
+            </div>
+            <div class="form-group">
+              <label for="cfg_noiva_nome">Nome da Noiva</label>
+              <input id="cfg_noiva_nome" type="text" class="input">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_frase_abertura">Texto de Introdução / História</label>
+              <textarea id="cfg_frase_abertura" class="textarea" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Cabeçalho & Localização Rápida</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_tagline_topo">Texto Topo Esquerdo</label>
+              <textarea id="cfg_tagline_topo" class="textarea" rows="2" placeholder="Vamos&#10;casar"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cfg_local_topo">Texto Topo Direito (Local Resumido)</label>
+              <textarea id="cfg_local_topo" class="textarea" rows="2" placeholder="Haras Residence&#10;São Cristóvão · Sergipe"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Data e Contagem Regressiva</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_data_evento">Data & Hora Alvo (ISO)</label>
+              <input id="cfg_data_evento" type="text" class="input" placeholder="2027-03-22T16:00:00-03:00">
+            </div>
+            <div class="form-group">
+              <label for="cfg_data_texto">Data Exibida (Formato Curto)</label>
+              <input id="cfg_data_texto" type="text" class="input" placeholder="22.03.2027">
+            </div>
+            <div class="form-group">
+              <label for="cfg_hora_texto">Horário Exibido (Legível)</label>
+              <input id="cfg_hora_texto" type="text" class="input" placeholder="segunda-feira, 16h">
+            </div>
+            <div class="form-group full-width" style="margin-top: 6px;">
+              <label class="checkbox-label">
+                <input id="cfg_mostrar_contagem" type="checkbox">
+                Exibir contagem regressiva em dias, horas e minutos no topo
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 02: O GRANDE DIA -->
+      <section id="tab-dia" class="tab-pane">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">O Grande Dia</h2>
+            <p class="section-desc">Horários da cerimônia e festa, orientações de traje, mapa e estacionamento.</p>
+          </div>
+          <button onclick="saveSiteConfig()" class="btn btn-terracotta">Salvar Alterações</button>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Cerimônia</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_cerimonia_hora">Horário da Cerimônia</label>
+              <input id="cfg_cerimonia_hora" type="text" class="input" placeholder="16h00">
+            </div>
+            <div class="form-group">
+              <label for="cfg_cerimonia_mapa_url">Link do Google Maps</label>
+              <input id="cfg_cerimonia_mapa_url" type="text" class="input" placeholder="https://maps.google.com">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_cerimonia_local">Local da Cerimônia</label>
+              <textarea id="cfg_cerimonia_local" class="textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_cerimonia_obs">Dica / Observação da Cerimônia</label>
+              <textarea id="cfg_cerimonia_obs" class="textarea" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Recepção & Festa</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_recepcao_hora">Horário da Recepção</label>
+              <input id="cfg_recepcao_hora" type="text" class="input" placeholder="18h30">
+            </div>
+            <div class="form-group">
+              <label for="cfg_recepcao_mapa_url">Link do Google Maps</label>
+              <input id="cfg_recepcao_mapa_url" type="text" class="input" placeholder="https://maps.google.com">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_recepcao_local">Local da Recepção</label>
+              <textarea id="cfg_recepcao_local" class="textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_recepcao_obs">Dica / Observação da Recepção</label>
+              <textarea id="cfg_recepcao_obs" class="textarea" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Orientações aos Convidados</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_dress_code_titulo">Título do Dress Code</label>
+              <input id="cfg_dress_code_titulo" type="text" class="input">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_dress_code_desc">Descrição do Dress Code</label>
+              <textarea id="cfg_dress_code_desc" class="textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cfg_estacionamento_titulo">Título de Estacionamento</label>
+              <input id="cfg_estacionamento_titulo" type="text" class="input">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_estacionamento_desc">Descrição de Estacionamento</label>
+              <textarea id="cfg_estacionamento_desc" class="textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cfg_hospedagem_titulo">Título de Onde Ficar</label>
+              <input id="cfg_hospedagem_titulo" type="text" class="input">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_hospedagem_desc">Descrição de Onde Ficar</label>
+              <textarea id="cfg_hospedagem_desc" class="textarea" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 03: COTAS & PIX -->
+      <section id="tab-cotas" class="tab-pane">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Cotas de Sonho & PIX</h2>
+            <p class="section-desc">Gerencie a chave PIX dos noivos e cadastre ou edite as cotas de presente.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button onclick="openCotaModal()" class="btn btn-outline">+ Nova Cota</button>
+            <button onclick="saveSiteConfig()" class="btn btn-terracotta">Salvar PIX</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Chave PIX Oficial</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="cfg_pix_chave">Chave PIX (E-mail, CPF ou Aleatória)</label>
+              <input id="cfg_pix_chave" type="text" class="input" placeholder="exemplo@pix.com.br">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Lista de Cotas de Presente</h3>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 50px;">Ordem</th>
+                  <th>Título</th>
+                  <th>Frase</th>
+                  <th>Valor</th>
+                  <th style="width: 80px;">Status</th>
+                  <th style="width: 140px; text-align: right;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="cotasTableBody">
+                <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Carregando cotas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 04: MURAL DE RECADOS -->
+      <section id="tab-recados" class="tab-pane">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Mural de Recados</h2>
+            <p class="section-desc">Visualize e modere as mensagens deixadas pelos amigos e familiares.</p>
+          </div>
+          <button onclick="openRecadoModal()" class="btn btn-outline">+ Adicionar Recado</button>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 180px;">De quem</th>
+                  <th>Recado</th>
+                  <th style="width: 160px;">Data</th>
+                  <th style="width: 100px;">Status</th>
+                  <th style="width: 130px; text-align: right;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="recadosTableBody">
+                <tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Carregando recados...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 05: LISTA DE PRESENÇA (RSVP) -->
+      <section id="tab-rsvp" class="tab-pane">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Confirmações de Presença (RSVP)</h2>
+            <p class="section-desc">Acompanhe quem confirmou presença no casamento em tempo real.</p>
+          </div>
+          <button onclick="loadRSVPs()" class="btn btn-outline btn-sm">↻ Atualizar Lista</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Total de Respostas</span>
+            <span id="statTotalRespostas" class="stat-number">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Confirmados (SIM)</span>
+            <span id="statConfirmadosSim" class="stat-number" style="color: var(--success);">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Não Poderão Ir</span>
+            <span id="statNaoVao" class="stat-number" style="color: var(--danger);">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total de Pessoas Estimadas</span>
+            <span id="statTotalPessoas" class="stat-number">0</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome do Convidado</th>
+                  <th style="width: 100px;">Presença</th>
+                  <th style="width: 80px;">Acomp.</th>
+                  <th>Nomes dos Acompanhantes</th>
+                  <th>Restrição Alimentar</th>
+                  <th>Recado</th>
+                  <th style="width: 80px; text-align: right;">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="rsvpTableBody">
+                <tr><td colspan="7" style="text-align: center; color: var(--text-muted);">Carregando confirmações...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 06: RODAPÉ & CONTATOS -->
+      <section id="tab-rodape" class="tab-pane">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Rodapé & Contatos</h2>
+            <p class="section-desc">Mensagem final de agradecimento e link do WhatsApp da cerimonialista.</p>
+          </div>
+          <button onclick="saveSiteConfig()" class="btn btn-terracotta">Salvar Alterações</button>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Mensagem Final</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="cfg_rodape_texto">Texto de Encerramento</label>
+              <textarea id="cfg_rodape_texto" class="textarea" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Canal de Dúvidas / Cerimonial</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cfg_whatsapp_numero">Texto do Número</label>
+              <input id="cfg_whatsapp_numero" type="text" class="input" placeholder="WhatsApp (11) 99999-9999">
+            </div>
+            <div class="form-group">
+              <label for="cfg_whatsapp_link">Link do WhatsApp</label>
+              <input id="cfg_whatsapp_link" type="text" class="input" placeholder="https://wa.me/5511999999999">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfg_whatsapp_obs">Observação / Nome da Cerimonialista</label>
+              <input id="cfg_whatsapp_obs" type="text" class="input" placeholder="Falar com a Bia, nossa cerimonialista">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal de Cotas -->
+  <div id="cotaModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 id="cotaModalTitle" class="card-title" style="margin-bottom: 20px;">Nova Cota de Presente</h3>
+      <form onsubmit="handleSaveCota(event)" style="display: flex; flex-direction: column; gap: 16px;">
+        <input type="hidden" id="cotaId">
+        <div class="form-group">
+          <label for="cotaTitulo">Título da Cota</label>
+          <input id="cotaTitulo" type="text" class="input" required placeholder="Ex: Um jantar em Roma">
+        </div>
+        <div class="form-group">
+          <label for="cotaFrase">Frase descritiva</label>
+          <textarea id="cotaFrase" class="textarea" rows="2" placeholder="Ex: Massa, vinho da casa e briga pela conta."></textarea>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="cotaValor">Valor (com R$)</label>
+            <input id="cotaValor" type="text" class="input" required placeholder="Ex: R$ 250">
+          </div>
+          <div class="form-group">
+            <label for="cotaOrdem">Ordem de exibição</label>
+            <input id="cotaOrdem" type="number" class="input" value="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input id="cotaAtivo" type="checkbox" checked>
+            Cota ativa e visível no site
+          </label>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 14px;">
+          <button type="button" onclick="closeCotaModal()" class="btn btn-outline">Cancelar</button>
+          <button type="submit" class="btn btn-terracotta">Salvar Cota</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Recado Manual -->
+  <div id="recadoModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 class="card-title" style="margin-bottom: 20px;">Adicionar Recado Manualmente</h3>
+      <form onsubmit="handleSaveRecado(event)" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="form-group">
+          <label for="recadoNome">Nome do Autor</label>
+          <input id="recadoNome" type="text" class="input" required placeholder="Ex: Tio Carlos">
+        </div>
+        <div class="form-group">
+          <label for="recadoMsg">Mensagem</label>
+          <textarea id="recadoMsg" class="textarea" required rows="3" placeholder="Escreva a mensagem..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 14px;">
+          <button type="button" onclick="closeRecadoModal()" class="btn btn-outline">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Adicionar ao Mural</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast de Notificação -->
+  <div id="toast" class="toast">Alterações salvas com sucesso!</div>
+
+  <script>
+    const PB_BASE_URL = 'https://projetotest-pocketbase.zpj4h1.easypanel.host';
+    let currentConfigId = null;
+    let cotasData = [];
+    let recadosData = [];
+    let rsvpsData = [];
+
+    // Helper: Headers de autenticação
+    function getAuthHeaders() {
+      const token = localStorage.getItem('pb_token');
+      return {
+        'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': token } : {})
+      };
+    }
+
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.className = `toast show ${type}`;
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.className = 'toast';
+      }, 3500);
+    }
+
+    // Gerenciamento de Abas
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick')?.includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (tabId === 'tab-rsvp') loadRSVPs();
+      if (tabId === 'tab-cotas') loadCotas();
+      if (tabId === 'tab-recados') loadRecados();
+    }
+
+    // Autenticação
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const submitBtn = document.getElementById('loginSubmitBtn');
+      const errEl = document.getElementById('loginError');
+
+      submitBtn.textContent = 'Autenticando...';
+      submitBtn.disabled = true;
+      errEl.style.display = 'none';
+
+      try {
+        // Tenta login como superuser do PocketBase
+        let res = await fetch(`${PB_BASE_URL}/api/collections/_superusers/auth-with-password`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identity: email, password })
+        });
+
+        if (!res.ok) {
+          // Fallback para collection 'users'
+          res = await fetch(`${PB_BASE_URL}/api/collections/users/auth-with-password`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identity: email, password })
+          });
+        }
+
+        if (!res.ok) {
+          throw new Error('E-mail ou senha incorretos.');
+        }
+
+        const data = await res.json();
+        localStorage.setItem('pb_token', data.token);
+        localStorage.setItem('pb_user', JSON.stringify(data.record || { email }));
+
+        initAdmin();
+      } catch (err) {
+        errEl.textContent = err.message || 'Erro ao conectar com PocketBase.';
+        errEl.style.display = 'block';
+      } finally {
+        submitBtn.textContent = 'Entrar no Painel';
+        submitBtn.disabled = false;
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('pb_token');
+      localStorage.removeItem('pb_user');
+      document.getElementById('appLayout').classList.remove('active');
+      document.getElementById('authScreen').style.display = 'flex';
+    }
+
+    function checkAuth() {
+      const token = localStorage.getItem('pb_token');
+      if (token) {
+        initAdmin();
+      } else {
+        document.getElementById('authScreen').style.display = 'flex';
+        document.getElementById('appLayout').classList.remove('active');
+      }
+    }
+
+    async function initAdmin() {
+      document.getElementById('authScreen').style.display = 'none';
+      document.getElementById('appLayout').classList.add('active');
+      await loadSiteConfig();
+      await loadCotas();
+      await loadRecados();
+      await loadRSVPs();
+    }
+
+    // Carregar e Salvar Configurações Gerais
+    async function loadSiteConfig() {
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/site_config/records?perPage=1`, {
+          headers: getAuthHeaders()
+        });
+        const json = await res.json();
+        if (json.items && json.items.length > 0) {
+          const cfg = json.items[0];
+          currentConfigId = cfg.id;
+
+          const fields = [
+            'noivo_nome', 'noiva_nome', 'frase_abertura', 'tagline_topo', 'local_topo',
+            'data_evento', 'data_texto', 'hora_texto', 'cerimonia_hora', 'cerimonia_mapa_url',
+            'cerimonia_local', 'cerimonia_obs', 'recepcao_hora', 'recepcao_mapa_url',
+            'recepcao_local', 'recepcao_obs', 'dress_code_titulo', 'dress_code_desc',
+            'estacionamento_titulo', 'estacionamento_desc', 'hospedagem_titulo', 'hospedagem_desc',
+            'pix_chave', 'rodape_texto', 'whatsapp_numero', 'whatsapp_link', 'whatsapp_obs'
+          ];
+
+          fields.forEach(f => {
+            const el = document.getElementById(`cfg_${f}`);
+            if (el) el.value = cfg[f] || '';
+          });
+
+          const chk = document.getElementById('cfg_mostrar_contagem');
+          if (chk) chk.checked = cfg.mostrar_contagem !== false;
+        }
+      } catch (err) {
+        console.error('Erro ao carregar configurações:', err);
+      }
+    }
+
+    async function saveSiteConfig() {
+      const fields = [
+        'noivo_nome', 'noiva_nome', 'frase_abertura', 'tagline_topo', 'local_topo',
+        'data_evento', 'data_texto', 'hora_texto', 'cerimonia_hora', 'cerimonia_mapa_url',
+        'cerimonia_local', 'cerimonia_obs', 'recepcao_hora', 'recepcao_mapa_url',
+        'recepcao_local', 'recepcao_obs', 'dress_code_titulo', 'dress_code_desc',
+        'estacionamento_titulo', 'estacionamento_desc', 'hospedagem_titulo', 'hospedagem_desc',
+        'pix_chave', 'rodape_texto', 'whatsapp_numero', 'whatsapp_link', 'whatsapp_obs'
+      ];
+
+      const payload = {};
+      fields.forEach(f => {
+        const el = document.getElementById(`cfg_${f}`);
+        if (el) payload[f] = el.value;
+      });
+      payload.mostrar_contagem = document.getElementById('cfg_mostrar_contagem').checked;
+
+      try {
+        const url = currentConfigId
+          ? `${PB_BASE_URL}/api/collections/site_config/records/${currentConfigId}`
+          : `${PB_BASE_URL}/api/collections/site_config/records`;
+        const method = currentConfigId ? 'PATCH' : 'POST';
+
+        const res = await fetch(url, {
+          method,
+          headers: getAuthHeaders(),
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error('Falha ao salvar');
+        const updated = await res.json();
+        currentConfigId = updated.id;
+        showToast('Configurações salvas com sucesso!');
+      } catch (err) {
+        showToast('Erro ao salvar configurações no PocketBase', 'error');
+      }
+    }
+
+    // Gestão de Cotas de Presente
+    async function loadCotas() {
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/cotas_presentes/records?sort=ordem`, {
+          headers: getAuthHeaders()
+        });
+        const data = await res.json();
+        cotasData = data.items || [];
+        renderCotasTable();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderCotasTable() {
+      const tbody = document.getElementById('cotasTableBody');
+      if (!cotasData.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhuma cota cadastrada.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = cotasData.map(c => `
+        <tr>
+          <td><strong>${c.ordem || 1}</strong></td>
+          <td><strong>${escapeHtml(c.titulo || '')}</strong></td>
+          <td style="color: var(--text-muted); max-width: 280px;">${escapeHtml(c.frase || '')}</td>
+          <td><span style="font-weight: 600; color: var(--terracotta);">${escapeHtml(c.valor || '')}</span></td>
+          <td>
+            <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: ${c.ativo ? 'rgba(46,125,50,0.1)' : 'rgba(198,40,40,0.1)'}; color: ${c.ativo ? 'var(--success)' : 'var(--danger)'};">
+              ${c.ativo ? 'Ativo' : 'Inativo'}
+            </span>
+          </td>
+          <td style="text-align: right; white-space: nowrap;">
+            <button onclick="editCota('${c.id}')" class="btn btn-outline btn-sm" style="margin-right: 6px;">Editar</button>
+            <button onclick="deleteCota('${c.id}')" class="btn btn-danger-outline btn-sm">Excluir</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function openCotaModal(cota = null) {
+      document.getElementById('cotaId').value = cota ? cota.id : '';
+      document.getElementById('cotaTitulo').value = cota ? cota.titulo : '';
+      document.getElementById('cotaFrase').value = cota ? cota.frase : '';
+      document.getElementById('cotaValor').value = cota ? cota.valor : 'R$ ';
+      document.getElementById('cotaOrdem').value = cota ? (cota.ordem || 1) : (cotasData.length + 1);
+      document.getElementById('cotaAtivo').checked = cota ? (cota.ativo !== false) : true;
+      document.getElementById('cotaModalTitle').textContent = cota ? 'Editar Cota' : 'Nova Cota de Presente';
+      document.getElementById('cotaModal').classList.add('active');
+    }
+
+    function closeCotaModal() {
+      document.getElementById('cotaModal').classList.remove('active');
+    }
+
+    function editCota(id) {
+      const c = cotasData.find(item => item.id === id);
+      if (c) openCotaModal(c);
+    }
+
+    async function handleSaveCota(e) {
+      e.preventDefault();
+      const id = document.getElementById('cotaId').value;
+      const payload = {
+        titulo: document.getElementById('cotaTitulo').value,
+        frase: document.getElementById('cotaFrase').value,
+        valor: document.getElementById('cotaValor').value,
+        ordem: parseInt(document.getElementById('cotaOrdem').value, 10) || 1,
+        ativo: document.getElementById('cotaAtivo').checked
+      };
+
+      try {
+        const url = id
+          ? `${PB_BASE_URL}/api/collections/cotas_presentes/records/${id}`
+          : `${PB_BASE_URL}/api/collections/cotas_presentes/records`;
+        const method = id ? 'PATCH' : 'POST';
+
+        const res = await fetch(url, {
+          method,
+          headers: getAuthHeaders(),
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error('Erro ao salvar cota.');
+        closeCotaModal();
+        showToast(id ? 'Cota atualizada!' : 'Cota adicionada com sucesso!');
+        await loadCotas();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    async function deleteCota(id) {
+      if (!confirm('Tem certeza que deseja excluir esta cota de presente?')) return;
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/cotas_presentes/records/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+        if (!res.ok) throw new Error('Erro ao excluir.');
+        showToast('Cota excluída.');
+        await loadCotas();
+      } catch (err) {
+        showToast('Falha ao excluir cota', 'error');
+      }
+    }
+
+    // Gestão de Mural de Recados
+    async function loadRecados() {
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/recados/records?sort=-created`, {
+          headers: getAuthHeaders()
+        });
+        const data = await res.json();
+        recadosData = data.items || [];
+        renderRecadosTable();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderRecadosTable() {
+      const tbody = document.getElementById('recadosTableBody');
+      if (!recadosData.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Nenhum recado ainda.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = recadosData.map(r => `
+        <tr>
+          <td><strong>${escapeHtml(r.nome || 'Anônimo')}</strong></td>
+          <td style="max-width: 320px;">${escapeHtml(r.msg || '')}</td>
+          <td style="color: var(--text-muted); font-size: 0.8rem;">${r.created ? new Date(r.created).toLocaleDateString('pt-BR') : '-'}</td>
+          <td>
+            <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(46,125,50,0.1); color: var(--success);">
+              Publicado
+            </span>
+          </td>
+          <td style="text-align: right;">
+            <button onclick="deleteRecado('${r.id}')" class="btn btn-danger-outline btn-sm">Excluir</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function openRecadoModal() {
+      document.getElementById('recadoNome').value = '';
+      document.getElementById('recadoMsg').value = '';
+      document.getElementById('recadoModal').classList.add('active');
+    }
+
+    function closeRecadoModal() {
+      document.getElementById('recadoModal').classList.remove('active');
+    }
+
+    async function handleSaveRecado(e) {
+      e.preventDefault();
+      const bgs = ['#EFE9DC', '#E7E7DC', '#F0E6DC', '#EDEADF'];
+      const rot = 'rotate(' + (Math.random() * 3.6 - 1.8).toFixed(2) + 'deg)';
+      const payload = {
+        nome: document.getElementById('recadoNome').value.trim(),
+        msg: document.getElementById('recadoMsg').value.trim(),
+        bg: bgs[Math.floor(Math.random() * bgs.length)],
+        rot: rot,
+        aprovado: true
+      };
+
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/recados/records`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Erro ao salvar recado');
+        closeRecadoModal();
+        showToast('Recado inserido no mural!');
+        await loadRecados();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    async function deleteRecado(id) {
+      if (!confirm('Deseja excluir este recado do mural?')) return;
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/recados/records/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+        if (!res.ok) throw new Error('Erro ao excluir');
+        showToast('Recado removido.');
+        await loadRecados();
+      } catch (err) {
+        showToast('Falha ao excluir recado', 'error');
+      }
+    }
+
+    // Gestão de Confirmações de Presença (RSVPs)
+    async function loadRSVPs() {
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/rsvps/records?sort=-created&perPage=200`, {
+          headers: getAuthHeaders()
+        });
+        const data = await res.json();
+        rsvpsData = data.items || [];
+        renderRSVPTable();
+      } catch (err) {
+        console.error('Erro ao carregar RSVPs:', err);
+      }
+    }
+
+    function renderRSVPTable() {
+      const tbody = document.getElementById('rsvpTableBody');
+      const totalRespostas = rsvpsData.length;
+      let confirmadosSim = 0;
+      let naoVao = 0;
+      let totalPessoas = 0;
+
+      rsvpsData.forEach(r => {
+        if (r.vai === true) {
+          confirmadosSim++;
+          totalPessoas += 1 + (parseInt(r.acomp, 10) || 0);
+        } else if (r.vai === false) {
+          naoVao++;
+        }
+      });
+
+      document.getElementById('statTotalRespostas').textContent = totalRespostas;
+      document.getElementById('statConfirmadosSim').textContent = confirmadosSim;
+      document.getElementById('statNaoVao').textContent = naoVao;
+      document.getElementById('statTotalPessoas').textContent = totalPessoas;
+
+      if (!rsvpsData.length) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">Nenhuma confirmação de presença registrada ainda.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = rsvpsData.map(r => `
+        <tr>
+          <td><strong>${escapeHtml(r.nome || 'Sem nome')}</strong></td>
+          <td>
+            <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; font-weight: 600; background: ${r.vai ? 'rgba(46,125,50,0.12)' : 'rgba(198,40,40,0.12)'}; color: ${r.vai ? 'var(--success)' : 'var(--danger)'};">
+              ${r.vai ? 'SIM' : 'NÃO'}
+            </span>
+          </td>
+          <td>${r.vai ? (r.acomp || 0) : '-'}</td>
+          <td style="color: var(--text-muted);">${escapeHtml(r.nomes_acomp || '-')}</td>
+          <td><span style="color: ${r.restricao ? 'var(--terracotta)' : 'inherit'}; font-weight: ${r.restricao ? '500' : 'normal'};">${escapeHtml(r.restricao || 'Nenhuma')}</span></td>
+          <td style="font-style: italic; color: var(--text-muted); max-width: 220px;">${escapeHtml(r.recado || '-')}</td>
+          <td style="text-align: right;">
+            <button onclick="deleteRSVP('${r.id}')" class="btn btn-danger-outline btn-sm">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function deleteRSVP(id) {
+      if (!confirm('Deseja excluir este registro de presença?')) return;
+      try {
+        const res = await fetch(`${PB_BASE_URL}/api/collections/rsvps/records/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+        if (!res.ok) throw new Error('Erro ao excluir');
+        showToast('Registro excluído.');
+        await loadRSVPs();
+      } catch (err) {
+        showToast('Falha ao excluir registro', 'error');
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Inicialização ao carregar
+    window.addEventListener('DOMContentLoaded', checkAuth);
+  </script>
+</body>
+</html>
