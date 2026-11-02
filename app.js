@@ -1,5 +1,5 @@
 const PB_URL = 'https://projetotest-pocketbase.zpj4h1.easypanel.host';
-let eventDate = new Date('2027-03-22T16:00:00-03:00');
+let eventDate = new Date('2027-03-21T16:00:00-03:00');
 let pixKey = '';
 const $ = selector => document.querySelector(selector);
 function updateCountdown() {
